@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Issue } from "./issue";
 import { Recipe } from "./recipe";
 //import { HttpClient, HttpHeaders } from "@angular/common/http";
 
@@ -9,24 +8,8 @@ import { Recipe } from "./recipe";
 // }
 
 @Injectable()
-export class IssueService {
-
-  issues: Issue[] = [
-    {
-      id: 1,
-      location: 'PC5',
-      description: 'Bad',
-      status: 'ADDED',
-    },
-    {
-      id: 2,
-      location: 'PC3',
-      description: 'Very bad',
-      status: 'DONE'
-    },
-  ];
-
-  recipes: Recipe[] = [
+export class RecipeService {
+    recipes: Recipe[] = [
     {
       id: 1,
       recipeName: 'szalámis pizza',
@@ -57,41 +40,19 @@ export class IssueService {
    // private http: HttpClient
   ) { }
 
-  // getIssues(): Promise<Issue[]> {
-  //   return this.http.get<Issue[]>('api/issue').toPromise();
+  // getRecipes(): Promise<Recipe[]> {
+  //   return this.http.get<Recipe[]>('api/recipe').toPromise();
   // }
 
-  // getIssuesSlowly(): Promise<Issue[]> {
-  //   return new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       resolve(this.issues);
-  //     }, 4000)
-  //   });
-  // }
-
-  // getIssues(): Issue[] {
-  //   return this.issues;
-  // }
 
   getRecipes(): Recipe[] {
     return this.recipes;
   }
 
-  // getIssue(id) {
-  //   return this.issues.find(issue => issue.id === id);
-  // }
 
   getRecipe(id) {
     return this.recipes.find(recipe => recipe.id === id);
   }
-
-  // addIssue(issue: Issue) {
-  //   const iss = Object.assign(issue, {
-  //     id: this.issues.length+1,
-  //     status: 'ADDED'
-  //   });
-  //   this.issues.push(iss);
-  // }
 
   addRecipe(recipe: Recipe) {
     console.log(recipe);
@@ -102,12 +63,6 @@ export class IssueService {
     });
     this.recipes.push(rec);
   }
-
-  // updateIssue(id: number, issue: Issue) {
-  //   const iss = this.getIssue(id);
-  //   iss.location = issue.location;
-  //   iss.description = issue.description;
-  // }
 
   updateRecipe(id: number, recipe: Recipe) {
     console.log(recipe);

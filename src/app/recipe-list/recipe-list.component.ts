@@ -1,55 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Issue } from "../issue";
 import { Recipe } from "../recipe";
-import { IssueService } from "../recipe.service";
+import { RecipeService } from "../recipe.service";
 
 @Component({
   selector: 'recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class IssueListComponent implements OnInit {
+export class RecipeListComponent implements OnInit {
 
-  // selectedStatus: string = '';
-  // issues: Issue[] = [];
-  // filteredIssues: Issue[];
   selectedCategory: string = '';
   recipes: Recipe[] = [];
   filteredRecipes: Recipe[];
 
   constructor(
-    private issueService: IssueService
+    private recipeService: RecipeService
   ) { }
 
-  // async ngOnInit() {
-  //   this.issues = await this.issueService.getIssues();
-  //   this.filterIssues();
-  // }
+
   async ngOnInit() {
-    this.recipes = await this.issueService.getRecipes();
+    this.recipes = await this.recipeService.getRecipes();
     this.filterRecipes();
   }
 
-  // onFilterChange(status: string) {
-  //   this.selectedStatus = status;
-  //   this.filterIssues();
-  // }
+
   onFilterChange(category: string) {
     this.selectedCategory = category;
     this.filterRecipes();
   }
 
-  // filterIssues() {
-  //   this.filteredIssues = this.selectedStatus === '' 
-  //     ? this.issues  
-  //     : this.issues.filter(
-  //         issue => issue.status === this.selectedStatus)
-  // }
   filterRecipes() {
-    this.filteredRecipes = this.selectedCategory === '' 
-      ? this.recipes  
+    this.filteredRecipes = this.selectedCategory === ''
+      ? this.recipes
       : this.recipes.filter(
-          recipe => recipe.category === this.selectedCategory)
+          recipe => recipe.category === this.selectedCategory);
   }
 
 }

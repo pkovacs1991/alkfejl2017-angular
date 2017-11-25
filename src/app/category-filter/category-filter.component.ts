@@ -5,9 +5,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './category-filter.component.html',
   styleUrls: ['./category-filter.component.css']
 })
-export class StatusFilterComponent implements OnInit {
+export class CategoryFilterComponent implements OnInit {
 
-  //statuses: string[] = ['ADDED', 'DONE', 'REJECTED'];
   categories: string[] = ['PASTA', 'PIZZA', 'LEVES'];
   //@Input('status') selectedStatus: string = '';
   @Input('category') selectedCategory: string = '';

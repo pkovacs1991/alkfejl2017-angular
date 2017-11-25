@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes }   from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MainPageComponent } from "../main-page/main-page.component";
-import { IssueListComponent } from "../recipe-list/recipe-list.component";
-import { IssueDetailComponent } from "../recipe-detail/recipe-detail.component";
-import { IssueFormComponent } from "../recipe-form/recipe-form.component";
-import { IssueEditComponent } from "../recipe-edit/recipe-edit.component";
+import { RecipeListComponent } from "../recipe-list/recipe-list.component";
+import { RecipeDetailComponent } from "../recipe-detail/recipe-detail.component";
+import { RecipeFormComponent } from "../recipe-form/recipe-form.component";
+import { RecipeEditComponent } from "../recipe-edit/recipe-edit.component";
 
 const routes: Routes = [
   {
@@ -20,25 +20,19 @@ const routes: Routes = [
   },
   {
     path: 'recipe/all',
-    component: IssueListComponent,
-    // children: [
-    //   {
-    //     path: ':id',
-    //     component: IssueDetailComponent    
-    //   }
-    // ]
+    component: RecipeListComponent,
   },
   {
     path: 'recipe/new',
-    component: IssueEditComponent
+    component: RecipeEditComponent
   },
   {
     path: 'recipe/:id',
-    component: IssueDetailComponent
+    component: RecipeDetailComponent
   },
   {
     path: 'recipe/:id/edit',
-    component: IssueEditComponent
+    component: RecipeEditComponent
   },
 ];
 
