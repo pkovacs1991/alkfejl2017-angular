@@ -9,10 +9,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var main_page_component_1 = require("../main-page/main-page.component");
-var recipe_list_component_1 = require("../recipe-list/recipe-list.component");
 var recipe_detail_component_1 = require("../recipe-detail/recipe-detail.component");
 var recipe_edit_component_1 = require("../recipe-edit/recipe-edit.component");
 var user_edit_component_1 = require("../user-edit/user-edit.component");
+var recipe_all_component_1 = require("../recipe-all/recipe-all.component");
+var recipe_favourite_component_1 = require("../recipe-favourite/recipe-favourite.component");
+var recipe_my_component_1 = require("../recipe-my/recipe-my.component");
 var routes = [
     {
         path: '',
@@ -25,7 +27,15 @@ var routes = [
     },
     {
         path: 'recipe/all',
-        component: recipe_list_component_1.RecipeListComponent,
+        component: recipe_all_component_1.RecipeAllComponent,
+    },
+    {
+        path: 'recipe/favourite',
+        component: recipe_favourite_component_1.RecipeFavouriteComponent,
+    },
+    {
+        path: 'recipe/my',
+        component: recipe_my_component_1.RecipeMyComponent,
     },
     {
         path: 'recipe/new',
@@ -40,8 +50,8 @@ var routes = [
         component: recipe_edit_component_1.RecipeEditComponent
     },
     {
-        path: 'user/profile',
-        component: user_edit_component_1.UserEditComponent
+        path: 'recipe/:id/delete',
+        component: recipe_edit_component_1.RecipeEditComponent
     },
     {
         path: 'register',

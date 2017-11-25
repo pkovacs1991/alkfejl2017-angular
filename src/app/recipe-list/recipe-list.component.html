@@ -14,6 +14,7 @@
           <th scope="col">Recept neve</th>
           <th scope="col">Feltöltő</th>
           <th scope="col">Kategória</th>
+          <th scope="col">Kedvelés</th>
           <th scope="col">Szerkesztés</th>
         </tr>
       </thead>
@@ -30,10 +31,29 @@
           </td>
           <td>{{ recipe.category.name }}</td>
           <td>
+            <a mat-icon-button *ngIf="isFavourite(recipe.id) ;  else elseBlock"
+               (click)="this.removeFavouriteRecipe(recipe.id)">
+              <mat-icon>favorite</mat-icon>
+            </a>
+            <ng-template #elseBlock>
+            <a mat-icon-button
+               (click)="this.addFavouriteRecipe(recipe.id)">
+              <mat-icon>favorite_border</mat-icon>
+            </a>
+            </ng-template>
+          </td>
+
+          <td>
             <a mat-icon-button 
               [routerLink]="['/recipe', recipe.id, 'edit']">
               <mat-icon>edit</mat-icon>
             </a>
+            <a  mat-icon-button
+               (click)="this.deleteRecipe(recipe.id)">
+              <mat-icon >delete</mat-icon>
+            </a>
+
+
             <!--<mat-icon>edit</mat-icon>-->
           </td>
         </tr>

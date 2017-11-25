@@ -23,7 +23,8 @@ var RecipeFormComponent = (function () {
         if (!form.valid) {
             return;
         }
-        this.onSubmit.emit(this.recipe);
+        console.log(this.model);
+        this.onSubmit.emit(this.model);
     };
     return RecipeFormComponent;
 }());

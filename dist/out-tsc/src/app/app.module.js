@@ -25,6 +25,10 @@ var category_filter_component_1 = require("./category-filter/category-filter.com
 var recipe_edit_component_1 = require("./recipe-edit/recipe-edit.component");
 var user_form_component_1 = require("./user-form/user-form.component");
 var user_edit_component_1 = require("./user-edit/user-edit.component");
+var category_service_1 = require("./services/category.service");
+var recipe_favourite_component_1 = require("./recipe-favourite/recipe-favourite.component");
+var recipe_all_component_1 = require("./recipe-all/recipe-all.component");
+var recipe_my_component_1 = require("./recipe-my/recipe-my.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -41,7 +45,10 @@ AppModule = __decorate([
             category_filter_component_1.CategoryFilterComponent,
             recipe_edit_component_1.RecipeEditComponent,
             user_form_component_1.UserFormComponent,
-            user_edit_component_1.UserEditComponent
+            user_edit_component_1.UserEditComponent,
+            recipe_favourite_component_1.RecipeFavouriteComponent,
+            recipe_all_component_1.RecipeAllComponent,
+            recipe_my_component_1.RecipeMyComponent
         ],
         imports: [
             platform_browser_1.BrowserModule,
@@ -54,7 +61,7 @@ AppModule = __decorate([
             forms_1.FormsModule,
             http_1.HttpClientModule
         ],
-        providers: [recipe_service_1.RecipeService, auth_service_1.AuthService],
+        providers: [recipe_service_1.RecipeService, auth_service_1.AuthService, category_service_1.CategoryService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {User} from "../models/user";
+import {Recipe} from "../models/recipe";
 
 @Injectable()
 export class UserService {
@@ -15,11 +16,21 @@ export class UserService {
     }
 
 
-    getUser(id) {
+    getUser(id): User {
         return this.users.find(user => user.id === id);
     }
 
-    addUser(user: User) {
+    getFavouriteRecipes(): Recipe[] {
+        const loggedInuser: User = this.users.find(user => user.id === 1);
+        return loggedInuser.favoriteRecipes;
+    }
+
+    getMyRecipes(): Recipe[] {
+        const loggedInuser: User = this.users.find(user => user.id === 1);
+        return loggedInuser.recipes;
+    }
+
+    addUser(user: User): void {
         console.log(user);
         const usr: User = Object.assign(user, {
             id: this.users.length + 1,
@@ -28,7 +39,7 @@ export class UserService {
         this.users.push(usr);
     }
 
-    updateUser(id: number, user: User) {
+    updateUser(id: number, user: User): void {
         console.log(user);
         const rec: User = this.getUser(id);
         rec.username = user.username;

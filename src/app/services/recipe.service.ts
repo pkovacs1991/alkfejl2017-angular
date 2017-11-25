@@ -9,6 +9,43 @@ import { Recipe } from '../models/recipe';
 
 @Injectable()
 export class RecipeService {
+    favourites: Recipe[] = [
+        {
+            id: 1,
+            recipeName: 'almas pite',
+            owner: {
+                id: 1,
+                username: 'alma',
+                email: 'a@a.com',
+                password: '7e240de74fb1ed08fa08d38063f6a6a91462a815',
+                role: 'ADMIN'
+            },
+            ingredients: 'alma, liszt, cukor',
+            description: 'Mindenbele aztan a tepsibe bele!',
+            category: {
+                id: 1,
+                name: 'PASTA'
+            }
+        },
+        {
+            id: 3,
+            recipeName: 'cseresznyeleves',
+            owner: {
+                id: 3,
+                username: 'cseresznye',
+                email: 'c@c.com',
+                password: 'f36b4825e5db2cf7dd2d2593b3f5c24c0311d8b2',
+                role: 'USER'
+            },
+            ingredients: 'cseresznye, 1 l viz, cukor, so',
+            description: 'Egy labosba beletesszuk a vizet, hozzaadjuk a tobbi hozzavalot, aztan forralasig csinaljuk',
+            category: {
+                id: 3,
+                name: 'SOUP'
+            }
+        }
+    ];
+
     recipes: Recipe[] = [
         {
             id: 1,
@@ -236,6 +273,27 @@ export class RecipeService {
         }
     ];
 
+    
+    myRecipes: Recipe[] = [
+        {
+            id: 1,
+            recipeName: 'almas pite',
+            owner: {
+                id: 1,
+                username: 'alma',
+                email: 'a@a.com',
+                password: '7e240de74fb1ed08fa08d38063f6a6a91462a815',
+                role: 'ADMIN'
+            },
+            ingredients: 'alma, liszt, cukor',
+            description: 'Mindenbele aztan a tepsibe bele!',
+            category: {
+                id: 1,
+                name: 'PASTA'
+            }
+        }
+    ];
+
   constructor(
    // private http: HttpClient
   ) { }
@@ -246,8 +304,16 @@ export class RecipeService {
 
 
   getRecipes(): Recipe[] {
-    return this.recipes;
+        return this.recipes;
   }
+
+  getFavourites(): Recipe[] {
+        return this.favourites;
+  }
+
+    getMyRecipes(): Recipe[] {
+        return this.myRecipes;
+    }
 
 
   getRecipe(id) {
@@ -270,5 +336,32 @@ export class RecipeService {
     rec.recipeName = recipe.recipeName;
     rec.ingredients = recipe.ingredients;
     rec.description = recipe.description;
+    console.log('rec after', rec);
+  }
+
+  deleteRecipe(id: number ) {
+      console.log(id);
+      const delRecipe: Recipe = this.recipes.find(recipe => recipe.id === id);
+
+      const index = this.recipes.indexOf(delRecipe);
+      if (index > -1) {
+          this.recipes.splice(index, 1);
+      }
+
+  }
+
+  addToFavourite(id: number ) {
+      const fav = this.recipes.find(recipe => recipe.id === id);
+      this.favourites.push(fav);
+  }
+
+    removeFromFavourite(id: number ) {
+        console.log(id);
+        const delRecipe: Recipe = this.favourites.find(recipe => recipe.id === id);
+
+        const index = this.favourites.indexOf(delRecipe);
+        if (index > -1) {
+            this.favourites.splice(index, 1);
+        }
   }
 }

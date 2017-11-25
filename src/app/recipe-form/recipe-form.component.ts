@@ -23,6 +23,7 @@ export class RecipeFormComponent implements OnChanges {
     if (!form.valid) {
       return;
     }
-    this.onSubmit.emit(this.recipe);
+    console.log(this.model);
+    this.onSubmit.emit(this.model);
   }
 }

@@ -24,7 +24,7 @@ export class UserFormComponent implements OnInit {
         if (!form.valid) {
             return;
         }
-        this.onSubmit.emit(this.user);
+        this.onSubmit.emit(this.model);
     }
 
 }

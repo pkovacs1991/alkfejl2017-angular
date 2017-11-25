@@ -38,7 +38,9 @@ var RecipeEditComponent = (function () {
     RecipeEditComponent.prototype.onFormSubmit = function (recipe) {
         console.log(recipe);
         if (recipe.id > 0) {
+            console.log('form', recipe);
             this.recipeService.updateRecipe(recipe.id, recipe);
+            console.log('update');
         }
         else {
             this.recipeService.addRecipe(recipe);

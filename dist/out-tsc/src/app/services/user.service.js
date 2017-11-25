@@ -20,6 +20,14 @@ var UserService = (function () {
     UserService.prototype.getUser = function (id) {
         return this.users.find(function (user) { return user.id === id; });
     };
+    UserService.prototype.getFavouriteRecipes = function () {
+        var loggedInuser = this.users.find(function (user) { return user.id === 1; });
+        return loggedInuser.favoriteRecipes;
+    };
+    UserService.prototype.getMyRecipes = function () {
+        var loggedInuser = this.users.find(function (user) { return user.id === 1; });
+        return loggedInuser.recipes;
+    };
     UserService.prototype.addUser = function (user) {
         console.log(user);
         var usr = Object.assign(user, {

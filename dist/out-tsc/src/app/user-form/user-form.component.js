@@ -23,7 +23,7 @@ var UserFormComponent = (function () {
         if (!form.valid) {
             return;
         }
-        this.onSubmit.emit(this.user);
+        this.onSubmit.emit(this.model);
     };
     return UserFormComponent;
 }());

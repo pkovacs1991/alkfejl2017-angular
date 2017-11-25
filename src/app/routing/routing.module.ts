@@ -8,6 +8,9 @@ import { RecipeDetailComponent } from "../recipe-detail/recipe-detail.component"
 import { RecipeFormComponent } from "../recipe-form/recipe-form.component";
 import { RecipeEditComponent } from "../recipe-edit/recipe-edit.component";
 import {UserEditComponent} from "../user-edit/user-edit.component";
+import {RecipeAllComponent} from "../recipe-all/recipe-all.component";
+import {RecipeFavouriteComponent} from "../recipe-favourite/recipe-favourite.component";
+import {RecipeMyComponent} from "../recipe-my/recipe-my.component";
 
 const routes: Routes = [
   {
@@ -21,7 +24,15 @@ const routes: Routes = [
   },
   {
     path: 'recipe/all',
-    component: RecipeListComponent,
+    component: RecipeAllComponent,
+  },
+  {
+      path: 'recipe/favourite',
+      component: RecipeFavouriteComponent,
+  },
+  {
+      path: 'recipe/my',
+      component: RecipeMyComponent,
   },
   {
     path: 'recipe/new',
@@ -36,8 +47,8 @@ const routes: Routes = [
     component: RecipeEditComponent
   },
   {
-    path: 'user/profile',
-    component: UserEditComponent
+      path: 'recipe/:id/delete',
+      component: RecipeEditComponent
   },
   {
     path: 'register',

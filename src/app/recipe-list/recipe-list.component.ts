@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, Input, OnChanges, OnInit} from '@angular/core';
 import { Recipe } from "../models/recipe";
 import { RecipeService } from "../services/recipe.service";
 
@@ -7,10 +7,11 @@ import { RecipeService } from "../services/recipe.service";
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnChanges  {
 
   selectedCategory: string = '';
-  recipes: Recipe[] = [];
+  favourites: Recipe[];
+  @Input() recipes: Recipe[];
   filteredRecipes: Recipe[];
 
   constructor(
@@ -18,8 +19,8 @@ export class RecipeListComponent implements OnInit {
   ) { }
 
 
-  async ngOnInit() {
-    this.recipes = await this.recipeService.getRecipes();
+    ngOnChanges() {
+    this.favourites = this.recipeService.getFavourites();
     this.filterRecipes();
   }
 
@@ -34,6 +35,37 @@ export class RecipeListComponent implements OnInit {
       ? this.recipes
       : this.recipes.filter(
           recipe => recipe.category.name === this.selectedCategory);
+  }
+
+  deleteRecipe(id: number) {
+    console.log(id);
+    this.recipeService.deleteRecipe(id);
+
+  }
+
+  addFavouriteRecipe(id: number) {
+
+      this.recipeService.addToFavourite(id);
+      this.favourites = this.recipeService.getFavourites();
+
+  }
+
+  removeFavouriteRecipe(id: number) {
+
+      this.recipeService.removeFromFavourite(id);
+      this.favourites = this.recipeService.getFavourites();
+
+  }
+
+  isFavourite(id: number): boolean {
+    let ret = false;
+    for (let i = 0; i < this.favourites.length; i++) {
+        if (this.favourites[i].id === id) {
+            ret = true;
+        }
+    }
+
+    return ret;
   }
 
 }

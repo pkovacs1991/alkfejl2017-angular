@@ -17,6 +17,42 @@ var core_1 = require("@angular/core");
 // }
 var RecipeService = (function () {
     function RecipeService() {
+        this.favourites = [
+            {
+                id: 1,
+                recipeName: 'almas pite',
+                owner: {
+                    id: 1,
+                    username: 'alma',
+                    email: 'a@a.com',
+                    password: '7e240de74fb1ed08fa08d38063f6a6a91462a815',
+                    role: 'ADMIN'
+                },
+                ingredients: 'alma, liszt, cukor',
+                description: 'Mindenbele aztan a tepsibe bele!',
+                category: {
+                    id: 1,
+                    name: 'PASTA'
+                }
+            },
+            {
+                id: 3,
+                recipeName: 'cseresznyeleves',
+                owner: {
+                    id: 3,
+                    username: 'cseresznye',
+                    email: 'c@c.com',
+                    password: 'f36b4825e5db2cf7dd2d2593b3f5c24c0311d8b2',
+                    role: 'USER'
+                },
+                ingredients: 'cseresznye, 1 l viz, cukor, so',
+                description: 'Egy labosba beletesszuk a vizet, hozzaadjuk a tobbi hozzavalot, aztan forralasig csinaljuk',
+                category: {
+                    id: 3,
+                    name: 'SOUP'
+                }
+            }
+        ];
         this.recipes = [
             {
                 id: 1,
@@ -243,12 +279,37 @@ var RecipeService = (function () {
                 ]
             }
         ];
+        this.myRecipes = [
+            {
+                id: 1,
+                recipeName: 'almas pite',
+                owner: {
+                    id: 1,
+                    username: 'alma',
+                    email: 'a@a.com',
+                    password: '7e240de74fb1ed08fa08d38063f6a6a91462a815',
+                    role: 'ADMIN'
+                },
+                ingredients: 'alma, liszt, cukor',
+                description: 'Mindenbele aztan a tepsibe bele!',
+                category: {
+                    id: 1,
+                    name: 'PASTA'
+                }
+            }
+        ];
     }
     // getRecipes(): Promise<Recipe[]> {
     //   return this.http.get<Recipe[]>('api/user').toPromise();
     // }
     RecipeService.prototype.getRecipes = function () {
         return this.recipes;
+    };
+    RecipeService.prototype.getFavourites = function () {
+        return this.favourites;
+    };
+    RecipeService.prototype.getMyRecipes = function () {
+        return this.myRecipes;
     };
     RecipeService.prototype.getRecipe = function (id) {
         return this.recipes.find(function (recipe) { return recipe.id === id; });
@@ -268,6 +329,18 @@ var RecipeService = (function () {
         rec.recipeName = recipe.recipeName;
         rec.ingredients = recipe.ingredients;
         rec.description = recipe.description;
+        console.log('rec after', rec);
+    };
+    RecipeService.prototype.deleteRecipe = function (id) {
+        console.log(id);
+        var delRecipe = this.recipes.find(function (recipe) { return recipe.id === id; });
+        var index = this.recipes.indexOf(delRecipe);
+        if (index > -1) {
+            this.recipes.splice(index, 1);
+        }
+    };
+    RecipeService.prototype.addToFavourite = function (id) {
+        console.log(id);
     };
     return RecipeService;
 }());
