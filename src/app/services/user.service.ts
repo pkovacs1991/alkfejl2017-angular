@@ -77,4 +77,15 @@ export class UserService {
         rec.role = user.role;
     }
 
+    deleteUser(id: number ) {
+        console.log(id);
+        const delUser: User = this.users.find(user => user.id === id);
+  
+        const index = this.users.indexOf(delUser);
+        if (index > -1) {
+            this.users.splice(index, 1);
+        }
+  
+    }
+
 }

@@ -34,7 +34,11 @@ import {AuthGuard} from "./guards/AuthGuard";
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
+
 import {AdminGuard} from "./guards/AdminGuard";
+
+
+import { UserListComponent } from './user-list/user-list.component';
 
 
 @NgModule({
@@ -54,7 +58,8 @@ import {AdminGuard} from "./guards/AdminGuard";
     LoginComponent,
     CategoryListComponent,
     CategoryEditComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
