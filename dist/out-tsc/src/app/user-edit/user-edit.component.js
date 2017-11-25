@@ -13,7 +13,6 @@ var core_1 = require("@angular/core");
 var user_1 = require("../models/user");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
-var Observable_1 = require("rxjs/Observable");
 var user_service_1 = require("../services/user.service");
 var UserEditComponent = (function () {
     function UserEditComponent(route, userService, location) {
@@ -22,17 +21,7 @@ var UserEditComponent = (function () {
         this.location = location;
     }
     UserEditComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.paramMap
-            .switchMap(function (params) {
-            var id = params.get('id');
-            _this.user = id !== null
-                ? _this.userService.getUser(+id)
-                : new user_1.User();
-            console.log(_this.user);
-            return Observable_1.Observable.of({});
-        })
-            .subscribe();
+        this.user = new user_1.User();
     };
     UserEditComponent.prototype.onFormSubmit = function (user) {
         console.log(user);

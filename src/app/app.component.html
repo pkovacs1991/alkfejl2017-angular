@@ -4,15 +4,15 @@
     Főoldal
   </button>
   <button mat-button routerLink="/recipe/all">Receptek</button>
-  <button mat-button routerLink="/recipe/favourite">Kedvelt Receptek</button>
-  <button mat-button routerLink="/recipe/my">Saját Receptek</button>
-  <button mat-button routerLink="/category/all">Kategóriák</button>
-  <button mat-button routerLink="/user/all">Felhasználók</button>
+  <button *ngIf="this.user" mat-button routerLink="/recipe/favourite">Kedvelt Receptek</button>
+  <button *ngIf="this.user" mat-button routerLink="/recipe/my">Saját Receptek</button>
+  <button *ngIf="this.user && this.user.role === 'ADMIN'" mat-button routerLink="/category/all">Kategóriák</button>
+  <button *ngIf="this.user && this.user.role === 'ADMIN'" mat-button routerLink="/user/all">Felhasználók</button>
 
   <span class="fill-remaining-space"></span>
-  <button mat-button routerLink="/register">Regisztráció</button>
-  <button mat-button routerLink="/login">Bejelentkezés</button>
-  <button mat-button (click)="this.logout()">Kijelentkezés</button>
+  <button *ngIf="!this.user" mat-button routerLink="/register">Regisztráció</button>
+  <button *ngIf="!this.user" mat-button routerLink="/login">Bejelentkezés</button>
+  <button *ngIf="this.user" mat-button (click)="this.logout()">Kijelentkezés</button>
 
 </mat-toolbar>
 

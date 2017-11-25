@@ -27,6 +27,8 @@ import { RecipeFavouriteComponent } from './recipe-favourite/recipe-favourite.co
 import { RecipeAllComponent } from './recipe-all/recipe-all.component';
 import { RecipeMyComponent } from './recipe-my/recipe-my.component';
 import {UserService} from "./services/user.service";
+import { LoginComponent } from './login/login.component';
+import {AuthGuard} from "./guards/AuthGuard";
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import {UserService} from "./services/user.service";
     UserEditComponent,
     RecipeFavouriteComponent,
     RecipeAllComponent,
-    RecipeMyComponent
+    RecipeMyComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import {UserService} from "./services/user.service";
     FormsModule,
     HttpClientModule
   ],
-  providers: [RecipeService, AuthService, CategoryService, UserService],
+  providers: [RecipeService, AuthService, CategoryService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -340,7 +340,16 @@ var RecipeService = (function () {
         }
     };
     RecipeService.prototype.addToFavourite = function (id) {
+        var fav = this.recipes.find(function (recipe) { return recipe.id === id; });
+        this.favourites.push(fav);
+    };
+    RecipeService.prototype.removeFromFavourite = function (id) {
         console.log(id);
+        var delRecipe = this.favourites.find(function (recipe) { return recipe.id === id; });
+        var index = this.favourites.indexOf(delRecipe);
+        if (index > -1) {
+            this.favourites.splice(index, 1);
+        }
     };
     return RecipeService;
 }());

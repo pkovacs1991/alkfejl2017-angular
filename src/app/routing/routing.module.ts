@@ -11,6 +11,8 @@ import {UserEditComponent} from "../user-edit/user-edit.component";
 import {RecipeAllComponent} from "../recipe-all/recipe-all.component";
 import {RecipeFavouriteComponent} from "../recipe-favourite/recipe-favourite.component";
 import {RecipeMyComponent} from "../recipe-my/recipe-my.component";
+import {LoginComponent} from "../login/login.component";
+import {AuthGuard} from "../guards/AuthGuard";
 
 const routes: Routes = [
   {
@@ -29,30 +31,40 @@ const routes: Routes = [
   {
       path: 'recipe/favourite',
       component: RecipeFavouriteComponent,
-  },
+      canActivate: [AuthGuard]
+},
   {
       path: 'recipe/my',
       component: RecipeMyComponent,
+      canActivate: [AuthGuard]
   },
   {
     path: 'recipe/new',
-    component: RecipeEditComponent
+    component: RecipeEditComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'recipe/:id',
-    component: RecipeDetailComponent
+    component: RecipeDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'recipe/:id/edit',
-    component: RecipeEditComponent
+    component: RecipeEditComponent,
+    canActivate: [AuthGuard]
   },
   {
       path: 'recipe/:id/delete',
-      component: RecipeEditComponent
+      component: RecipeEditComponent,
+      canActivate: [AuthGuard]
   },
   {
-    path: 'register',
-    component: UserEditComponent
+        path: 'register',
+        component: UserEditComponent
+  },
+  {
+      path: 'login',
+      component: LoginComponent
   },
 
 

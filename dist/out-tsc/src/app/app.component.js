@@ -19,6 +19,9 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         //this.authService.login();
     };
+    AppComponent.prototype.logout = function () {
+        this.authService.logout();
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([

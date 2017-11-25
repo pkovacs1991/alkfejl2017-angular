@@ -34,16 +34,22 @@ var RecipeListComponent = (function () {
         console.log(id);
         this.recipeService.deleteRecipe(id);
     };
-    RecipeListComponent.prototype.favouriteRecipe = function (id) {
-        console.log(id);
+    RecipeListComponent.prototype.addFavouriteRecipe = function (id) {
         this.recipeService.addToFavourite(id);
+        this.favourites = this.recipeService.getFavourites();
+    };
+    RecipeListComponent.prototype.removeFavouriteRecipe = function (id) {
+        this.recipeService.removeFromFavourite(id);
+        this.favourites = this.recipeService.getFavourites();
     };
     RecipeListComponent.prototype.isFavourite = function (id) {
+        var ret = false;
         for (var i = 0; i < this.favourites.length; i++) {
             if (this.favourites[i].id === id) {
-                return true;
+                ret = true;
             }
         }
+        return ret;
     };
     return RecipeListComponent;
 }());

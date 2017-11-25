@@ -10,27 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/common/http");
-var httpOptions = {
-    headers: new http_1.HttpHeaders({ 'Content-Type': 'application/json' })
-};
-var AuthService = (function () {
-    function AuthService(http) {
-        this.http = http;
+var user_1 = require("../models/user");
+var auth_service_1 = require("../services/auth.service");
+var LoginComponent = (function () {
+    function LoginComponent(authService) {
+        this.authService = authService;
+        this.model = new user_1.User();
     }
-    AuthService.prototype.login = function (user) {
-        return this.http.post(
-        // 'http://localhost:4200/api/user/login', 
-        'api/user/login', user, httpOptions).toPromise();
+    LoginComponent.prototype.ngOnInit = function () {
     };
-    AuthService.prototype.logout = function () {
-        console.log('logout called');
+    LoginComponent.prototype.login = function (user) {
+        this.authService.login(user);
     };
-    return AuthService;
+    return LoginComponent;
 }());
-AuthService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.HttpClient])
-], AuthService);
-exports.AuthService = AuthService;
-//# sourceMappingURL=auth.service.js.map
+LoginComponent = __decorate([
+    core_1.Component({
+        selector: 'app-login',
+        templateUrl: './login.component.html',
+        styleUrls: ['./login.component.css']
+    }),
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map

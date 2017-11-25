@@ -15,6 +15,7 @@ var user_edit_component_1 = require("../user-edit/user-edit.component");
 var recipe_all_component_1 = require("../recipe-all/recipe-all.component");
 var recipe_favourite_component_1 = require("../recipe-favourite/recipe-favourite.component");
 var recipe_my_component_1 = require("../recipe-my/recipe-my.component");
+var login_component_1 = require("../login/login.component");
 var routes = [
     {
         path: '',
@@ -56,6 +57,10 @@ var routes = [
     {
         path: 'register',
         component: user_edit_component_1.UserEditComponent
+    },
+    {
+        path: 'login',
+        component: login_component_1.LoginComponent
     },
 ];
 var RoutingModule = (function () {

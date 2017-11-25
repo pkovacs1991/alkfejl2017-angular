@@ -29,6 +29,8 @@ var category_service_1 = require("./services/category.service");
 var recipe_favourite_component_1 = require("./recipe-favourite/recipe-favourite.component");
 var recipe_all_component_1 = require("./recipe-all/recipe-all.component");
 var recipe_my_component_1 = require("./recipe-my/recipe-my.component");
+var user_service_1 = require("./services/user.service");
+var login_component_1 = require("./login/login.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -48,7 +50,8 @@ AppModule = __decorate([
             user_edit_component_1.UserEditComponent,
             recipe_favourite_component_1.RecipeFavouriteComponent,
             recipe_all_component_1.RecipeAllComponent,
-            recipe_my_component_1.RecipeMyComponent
+            recipe_my_component_1.RecipeMyComponent,
+            login_component_1.LoginComponent
         ],
         imports: [
             platform_browser_1.BrowserModule,
@@ -56,12 +59,13 @@ AppModule = __decorate([
             flex_layout_1.FlexLayoutModule,
             material_1.MatToolbarModule, material_1.MatButtonModule,
             material_1.MatIconModule, material_1.MatMenuModule,
+            material_1.MatFormFieldModule, material_1.MatInputModule, material_1.MatSelectModule,
             material_1.MatButtonToggleModule,
             routing_module_1.RoutingModule,
             forms_1.FormsModule,
             http_1.HttpClientModule
         ],
-        providers: [recipe_service_1.RecipeService, auth_service_1.AuthService, category_service_1.CategoryService],
+        providers: [recipe_service_1.RecipeService, auth_service_1.AuthService, category_service_1.CategoryService, user_service_1.UserService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

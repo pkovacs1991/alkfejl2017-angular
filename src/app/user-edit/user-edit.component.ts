@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../models/user';
 import { Location } from '@angular/common';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from '../services/user.service';
 
@@ -17,7 +17,7 @@ export class UserEditComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private userService: UserService,
-        private location: Location
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -31,7 +31,8 @@ export class UserEditComponent implements OnInit {
         } else {
             this.userService.addUser(user);
         }
-        this.location.back();
+        console.log(this.userService.users);
+        this.router.navigate(['login']);
     }
 
 }
