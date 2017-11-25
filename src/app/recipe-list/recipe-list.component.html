@@ -26,9 +26,9 @@
               </a>
           </td>
           <td>
-              {{ recipe.user }}
+              {{ recipe.owner.username }}
           </td>
-          <td>{{ recipe.category }}</td>
+          <td>{{ recipe.category.name }}</td>
           <td>
             <a mat-icon-button 
               [routerLink]="['/recipe', recipe.id, 'edit']">

@@ -7,6 +7,7 @@ import { RecipeListComponent } from "../recipe-list/recipe-list.component";
 import { RecipeDetailComponent } from "../recipe-detail/recipe-detail.component";
 import { RecipeFormComponent } from "../recipe-form/recipe-form.component";
 import { RecipeEditComponent } from "../recipe-edit/recipe-edit.component";
+import {UserEditComponent} from "../user-edit/user-edit.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,16 @@ const routes: Routes = [
     path: 'recipe/:id/edit',
     component: RecipeEditComponent
   },
+  {
+    path: 'user/profile',
+    component: UserEditComponent
+  },
+  {
+    path: 'register',
+    component: UserEditComponent
+  },
+
+
 ];
 
 @NgModule({

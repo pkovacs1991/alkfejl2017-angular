@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Observable } from "rxjs";
-import { Recipe } from "../recipe";
-import { RecipeService } from "../recipe.service";
+import { Recipe } from "../models/recipe";
+import { RecipeService } from "../services/recipe.service";
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -21,7 +21,7 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit() {
     // const id = +this.route.snapshot.paramMap.get('id');
-    // this.recipe = this.recipeService.getRecipe(id);
+    // this.user = this.recipeService.getUser(id);
 
     this.route.paramMap
       .switchMap((params: ParamMap) => {

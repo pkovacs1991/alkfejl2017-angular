@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, OnChanges,
   EventEmitter } from '@angular/core';
-import { Recipe } from "../recipe";
+import { Recipe } from "../models/recipe";
 
 @Component({
   selector: 'recipe-form',

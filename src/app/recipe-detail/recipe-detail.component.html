@@ -4,7 +4,7 @@
 <br>
 <dl class="row">
   <dt class="col-sm-3">Feltöltő</dt>
-  <dd class="col-sm-9">{{ recipe.user }}</dd>
+  <dd class="col-sm-9">{{ recipe.owner.username }}</dd>
 
   <dt class="col-sm-3">Hozzávalók</dt>
   <dd class="col-sm-9">{{ recipe.ingredients }}</dd>
@@ -13,7 +13,7 @@
   <dd class="col-sm-9">{{ recipe.description }}</dd>
 
   <dt class="col-sm-3">Kategória</dt>
-  <dd class="col-sm-9">{{ recipe.category }}</dd>
+  <dd class="col-sm-9">{{ recipe.category.name }}</dd>
 
 </dl>
 <button mat-raised-button routerLink="/recipe/all">Vissza</button>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatusFilterComponent } from './status-filter.component';
+import { CategoryFilterComponent } from './category-filter.component';
 
-describe('StatusFilterComponent', () => {
-  let component: StatusFilterComponent;
-  let fixture: ComponentFixture<StatusFilterComponent>;
+describe('CategoryFilterComponent', () => {
+  let component: CategoryFilterComponent;
+  let fixture: ComponentFixture<CategoryFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StatusFilterComponent ]
+      declarations: [ CategoryFilterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StatusFilterComponent);
+    fixture = TestBed.createComponent(CategoryFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

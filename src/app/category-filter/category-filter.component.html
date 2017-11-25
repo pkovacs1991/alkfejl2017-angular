@@ -6,9 +6,9 @@
   <mat-button-toggle value="">
     ÖSSZES
   </mat-button-toggle>
-  <mat-button-toggle value="{{category}}" 
+  <mat-button-toggle value="{{category.name}}"
     *ngFor="let category of categories">
-    {{ category }}
+    {{ category.name }}
   </mat-button-toggle>
 </mat-button-toggle-group>
 <div>A kiválasztott kategória: {{selectedCategory}}</div>

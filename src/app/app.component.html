@@ -3,27 +3,18 @@
     <mat-icon>description</mat-icon>
     Főoldal
   </button>
-
-  <span class="fill-remaining-space" fxHide="false" fxHide.gt-sm></span>
-
-  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-    <button mat-button routerLink="/recipe/all">Receptek</button>
-    <button mat-button routerLink="/recipe/all">Kedvelt Receptek</button>
-    <button mat-button routerLink="/recipe/all">Saját Receptek</button>
-    <button mat-button routerLink="/recipe/new">Új recept felvétele</button>
-  </div>
-
-  <button mat-icon-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
-
-<mat-menu xPosition="before" #menu="matMenu">
   <button mat-button routerLink="/recipe/all">Receptek</button>
   <button mat-button routerLink="/recipe/all">Kedvelt Receptek</button>
   <button mat-button routerLink="/recipe/all">Saját Receptek</button>
   <button mat-button routerLink="/recipe/new">Új recept felvétele</button>
-</mat-menu>
+
+  <span class="fill-remaining-space"></span>
+  <button mat-button routerLink="/user/profile">Profil</button>
+  <button mat-button routerLink="/register">Regisztráció</button>
+  <button mat-button routerLink="/login">Bejelentkezés</button>
+  <button mat-button onclick="this.authService.logout()">Kijelentkezés</button>
+
+</mat-toolbar>
 
 <div class="container">
   <router-outlet></router-outlet>

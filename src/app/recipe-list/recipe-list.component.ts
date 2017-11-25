@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from "../recipe";
-import { RecipeService } from "../recipe.service";
+import { Recipe } from "../models/recipe";
+import { RecipeService } from "../services/recipe.service";
 
 @Component({
   selector: 'recipe-list',
@@ -33,7 +33,7 @@ export class RecipeListComponent implements OnInit {
     this.filteredRecipes = this.selectedCategory === ''
       ? this.recipes
       : this.recipes.filter(
-          recipe => recipe.category === this.selectedCategory);
+          recipe => recipe.category.name === this.selectedCategory);
   }
 
 }

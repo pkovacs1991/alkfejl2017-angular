@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {CategoryService} from "../services/category.service";
+import {Category} from "../models/category";
 
 @Component({
   selector: 'category-filter',
@@ -7,14 +9,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CategoryFilterComponent implements OnInit {
 
-  categories: string[] = ['PASTA', 'PIZZA', 'LEVES'];
+  categories: Category[];
   //@Input('status') selectedStatus: string = '';
-  @Input('category') selectedCategory: string = '';
+  @Input('category') selectedCategory: string;
   @Output() onChange = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
+    this.categories = this.categoryService.getCategories();
   }
 
   // onFilterChange(status: string) {
