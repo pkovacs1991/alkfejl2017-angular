@@ -1,6 +1,7 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from '../models/user';
+import {UserService} from "./user.service";
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -12,48 +13,19 @@ export class AuthService {
 
   @Output() loggedInUser: EventEmitter<any> = new EventEmitter();
 
-  users: User[] = [
-      {
-          id: 1,
-          username: 'alma',
-          email: 'a@a.com',
-          password: 'aaa',
-          role: 'ADMIN'
-      },
-      {
-          id: 2,
-          username: 'barack',
-          email: 'b@b.com',
-          password: 'bbb',
-          role: 'USER'
-      },
-      {
-          id: 3,
-          username: 'cseresznye',
-          email: 'c@c.com',
-          password: 'ccc',
-          role: 'USER'
-      },
-      {
-          id: 4,
-          username: 'dio',
-          email: 'd@d.com',
-          password: 'ddd',
-          role: 'USER'
-      }
-  ];
-
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) { }
 
-  login(user: User) {
-
-    for ( let i = 0; i < this.users.length; i++) {
-      if (user.username === this.users[i].username && user.password === this.users[i].password) {
+  async login(user: User) {
+    const users = await this.userService.getUsers();
+    console.log(users);
+    for ( let i = 0; i < users.length; i++) {
+      if (user.username === users[i].username && user.password === users[i].password) {
           console.log('user matched');
-          this.loggedInUser.emit(this.users[0]);
-          localStorage.setItem('user', JSON.stringify(this.users[i]));
+          this.loggedInUser.emit(users[i]);
+          localStorage.setItem('user', JSON.stringify(users[i]));
           break;
       }
 

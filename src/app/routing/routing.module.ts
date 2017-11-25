@@ -11,8 +11,14 @@ import {UserEditComponent} from "../user-edit/user-edit.component";
 import {RecipeAllComponent} from "../recipe-all/recipe-all.component";
 import {RecipeFavouriteComponent} from "../recipe-favourite/recipe-favourite.component";
 import {RecipeMyComponent} from "../recipe-my/recipe-my.component";
+
 import {LoginComponent} from "../login/login.component";
 import {AuthGuard} from "../guards/AuthGuard";
+
+import { CategoryListComponent } from "../category-list/category-list.component";
+import { CategoryEditComponent } from "../category-edit/category-edit.component";
+import {AdminGuard} from "../guards/AdminGuard";
+
 
 const routes: Routes = [
   {
@@ -65,6 +71,21 @@ const routes: Routes = [
   {
       path: 'login',
       component: LoginComponent
+  },
+  {
+    path: 'category/all',
+    component: CategoryListComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'category/new',
+    component: CategoryEditComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'category/:id/edit',
+    component: CategoryEditComponent,
+    canActivate: [AuthGuard, AdminGuard]
   },
 
 

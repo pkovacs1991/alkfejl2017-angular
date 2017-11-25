@@ -45,4 +45,15 @@ export class CategoryService {
         rec.name = category.name;
     }
 
+    deleteCategory(id: number ) {
+        console.log(id);
+        const delCategory: Category = this.categories.find(category => category.id === id);
+  
+        const index = this.categories.indexOf(delCategory);
+        if (index > -1) {
+            this.categories.splice(index, 1);
+        }
+  
+    }
+
 }

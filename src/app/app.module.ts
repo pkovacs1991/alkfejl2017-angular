@@ -27,8 +27,15 @@ import { RecipeFavouriteComponent } from './recipe-favourite/recipe-favourite.co
 import { RecipeAllComponent } from './recipe-all/recipe-all.component';
 import { RecipeMyComponent } from './recipe-my/recipe-my.component';
 import {UserService} from "./services/user.service";
+
 import { LoginComponent } from './login/login.component';
 import {AuthGuard} from "./guards/AuthGuard";
+
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
+import {AdminGuard} from "./guards/AdminGuard";
+
 
 @NgModule({
   declarations: [
@@ -44,7 +51,10 @@ import {AuthGuard} from "./guards/AuthGuard";
     RecipeFavouriteComponent,
     RecipeAllComponent,
     RecipeMyComponent,
-    LoginComponent
+    LoginComponent,
+    CategoryListComponent,
+    CategoryEditComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +68,7 @@ import {AuthGuard} from "./guards/AuthGuard";
     FormsModule,
     HttpClientModule
   ],
-  providers: [RecipeService, AuthService, CategoryService, UserService, AuthGuard],
+  providers: [RecipeService, AuthService, CategoryService, UserService, AuthGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
