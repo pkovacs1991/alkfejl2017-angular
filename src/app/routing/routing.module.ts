@@ -13,6 +13,7 @@ import {RecipeFavouriteComponent} from "../recipe-favourite/recipe-favourite.com
 import {RecipeMyComponent} from "../recipe-my/recipe-my.component";
 import { CategoryListComponent } from "../category-list/category-list.component";
 import { CategoryEditComponent } from "../category-edit/category-edit.component";
+import { UserListComponent } from "../user-list/user-list.component";
 
 const routes: Routes = [
   {
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: 'category/:id/edit',
     component: CategoryEditComponent
+  },
+  {
+    path: 'user/all',
+    component: UserListComponent
   },
 
 

@@ -30,6 +30,7 @@ import {UserService} from "./services/user.service";
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CategoryFormComponent } from './category-form/category-form.component';
     RecipeMyComponent,
     CategoryListComponent,
     CategoryEditComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
