@@ -90,7 +90,8 @@ const routes: Routes = [
   },
   {
     path: 'user/all',
-    component: UserListComponent
+    component: UserListComponent,
+    canActivate: [AuthGuard, AdminGuard]
   },
 
 

@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import { AuthService } from "./services/auth.service";
 import {User} from "./models/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
   user: User;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
       authService.loggedInUser.subscribe(user => this.user = user);
       console.log(this.user);
@@ -31,5 +33,6 @@ export class AppComponent implements OnInit {
     this.authService.logout();
 
     localStorage.removeItem('user');
+    this.router.navigate(['dashboard']);
   }
 }
