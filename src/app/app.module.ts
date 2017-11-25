@@ -27,6 +27,9 @@ import { RecipeFavouriteComponent } from './recipe-favourite/recipe-favourite.co
 import { RecipeAllComponent } from './recipe-all/recipe-all.component';
 import { RecipeMyComponent } from './recipe-my/recipe-my.component';
 import {UserService} from "./services/user.service";
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import {UserService} from "./services/user.service";
     UserEditComponent,
     RecipeFavouriteComponent,
     RecipeAllComponent,
-    RecipeMyComponent
+    RecipeMyComponent,
+    CategoryListComponent,
+    CategoryEditComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,

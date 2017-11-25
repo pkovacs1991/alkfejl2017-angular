@@ -11,6 +11,8 @@ import {UserEditComponent} from "../user-edit/user-edit.component";
 import {RecipeAllComponent} from "../recipe-all/recipe-all.component";
 import {RecipeFavouriteComponent} from "../recipe-favourite/recipe-favourite.component";
 import {RecipeMyComponent} from "../recipe-my/recipe-my.component";
+import { CategoryListComponent } from "../category-list/category-list.component";
+import { CategoryEditComponent } from "../category-edit/category-edit.component";
 
 const routes: Routes = [
   {
@@ -53,6 +55,18 @@ const routes: Routes = [
   {
     path: 'register',
     component: UserEditComponent
+  },
+  {
+    path: 'category/all',
+    component: CategoryListComponent
+  },
+  {
+    path: 'category/new',
+    component: CategoryEditComponent
+  },
+  {
+    path: 'category/:id/edit',
+    component: CategoryEditComponent
   },
 
 
