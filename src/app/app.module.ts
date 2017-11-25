@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule,
-          MatFormFieldModule, MatInputModule,
+          MatFormFieldModule, MatInputModule, MatSelectModule,
           MatButtonToggleModule
 } from '@angular/material';
 
@@ -26,6 +26,7 @@ import {CategoryService} from "./services/category.service";
 import { RecipeFavouriteComponent } from './recipe-favourite/recipe-favourite.component';
 import { RecipeAllComponent } from './recipe-all/recipe-all.component';
 import { RecipeMyComponent } from './recipe-my/recipe-my.component';
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -48,12 +49,13 @@ import { RecipeMyComponent } from './recipe-my/recipe-my.component';
     FlexLayoutModule,
     MatToolbarModule, MatButtonModule,
     MatIconModule, MatMenuModule,
+    MatFormFieldModule, MatInputModule, MatSelectModule,
     MatButtonToggleModule,
     RoutingModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [RecipeService, AuthService, CategoryService],
+  providers: [RecipeService, AuthService, CategoryService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

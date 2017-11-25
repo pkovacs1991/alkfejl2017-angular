@@ -21,16 +21,7 @@ export class UserEditComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.route.paramMap
-            .switchMap((params: ParamMap) => {
-                const id = params.get('id');
-                this.user = id !== null
-                    ? this.userService.getUser(+id)
-                    : new User();
-                console.log(this.user);
-                return Observable.of({});
-            })
-            .subscribe();
+       this.user = new User();
     }
 
     onFormSubmit(user: User) {
