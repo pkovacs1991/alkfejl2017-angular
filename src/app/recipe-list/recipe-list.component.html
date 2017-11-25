@@ -1,0 +1,47 @@
+<br>
+<h1 class="display-2">Receptek</h1>
+<hr>
+<br>
+<div class="row">
+  <div class="col">
+
+    <category-filter [category]="selectedCategory" (onChange)="onFilterChange($event)"></category-filter>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Recept neve</th>
+          <th scope="col">Feltöltő</th>
+          <th scope="col">Kategória</th>
+          <th scope="col">Szerkesztés</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let recipe of filteredRecipes">
+          <th scope="row">{{ recipe.id }}</th>
+          <td>
+              <a [routerLink]="['/recipe', recipe.id]">
+                {{ recipe.recipeName }}
+              </a>
+          </td>
+          <td>
+            <!--<a [routerLink]="['/issues', issue.id]">-->
+              {{ recipe.user }}
+            <!--</a>-->
+          </td>
+          <td>{{ recipe.category }}</td>
+          <td>
+            <a mat-icon-button 
+              [routerLink]="['/recipe', recipe.id, 'edit']">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <!--<mat-icon>edit</mat-icon>-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a mat-raised-button color="primary" routerLink="/recipe/new"><mat-icon>add</mat-icon> Új recept felvétele</a>
+  </div>
+
+</div>

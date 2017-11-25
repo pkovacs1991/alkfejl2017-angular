@@ -1,0 +1,19 @@
+<br>
+<h1 class="display-2">{{ recipe.recipeName }}</h1>
+<hr>
+<br>
+<dl class="row">
+  <dt class="col-sm-3">Feltöltő</dt>
+  <dd class="col-sm-9">{{ recipe.user }}</dd>
+
+  <dt class="col-sm-3">Hozzávalók</dt>
+  <dd class="col-sm-9">{{ recipe.ingredients }}</dd>
+
+  <dt class="col-sm-3">Elkészítés</dt>
+  <dd class="col-sm-9">{{ recipe.description }}</dd>
+
+  <dt class="col-sm-3">Kategória</dt>
+  <dd class="col-sm-9">{{ recipe.category }}</dd>
+
+</dl>
+<button mat-raised-button routerLink="/recipe/all">Vissza</button>

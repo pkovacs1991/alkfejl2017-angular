@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/">
+    <mat-icon>description</mat-icon>
+    Főoldal
+  </button>
+
+  <span class="fill-remaining-space" fxHide="false" fxHide.gt-sm></span>
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button routerLink="/recipe/all">Receptek</button>
+    <button mat-button routerLink="/recipe/all">Kedvelt Receptek</button>
+    <button mat-button routerLink="/recipe/all">Saját Receptek</button>
+    <button mat-button routerLink="/recipe/new">Új recept felvétele</button>
+  </div>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu xPosition="before" #menu="matMenu">
+  <button mat-button routerLink="/recipe/all">Receptek</button>
+  <button mat-button routerLink="/recipe/all">Kedvelt Receptek</button>
+  <button mat-button routerLink="/recipe/all">Saját Receptek</button>
+  <button mat-button routerLink="/recipe/new">Új recept felvétele</button>
+</mat-menu>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

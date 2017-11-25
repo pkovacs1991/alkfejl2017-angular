@@ -1,0 +1,14 @@
+<mat-button-toggle-group 
+  (change)="onFilterChange(group.value)" 
+  [value]="selectedCategory"
+  #group="matButtonToggleGroup"
+>
+  <mat-button-toggle value="">
+    ÖSSZES
+  </mat-button-toggle>
+  <mat-button-toggle value="{{category}}" 
+    *ngFor="let category of categories">
+    {{ category }}
+  </mat-button-toggle>
+</mat-button-toggle-group>
+<div>A kiválasztott kategória: {{selectedCategory}}</div>
