@@ -44,14 +44,6 @@ export class RecipeDetailComponent implements OnInit {
       console.log(this.comments);
   }
 
-  isMyComment(comment: Comment){
-    return this.loggedInUser && ( this.loggedInUser.id === comment.user.id);
-  }
 
-  deleteComment(id: number) {
-    //console.log(id);
-    this.commentService.deleteComment(id);
-
-  }
 
 }

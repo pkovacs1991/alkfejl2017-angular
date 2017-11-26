@@ -1,0 +1,25 @@
+<table  class="table">
+  <thead>
+  <tr>
+    <th class="header" scope="col">#</th>
+    <th class="header" scope="col">Felhasználó</th>
+    <th class="header" scope="col">Komment</th>
+    <th  *ngIf="(this.loggedInUser)" class="header" scope="col">Szerkesztés</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let comment of this.comments">
+    <th scope="row">{{ comment.id }}</th>
+    <td>
+      {{ comment.user.username }}
+    </td>
+    <td>
+      {{ comment.comment }}
+    </td>
+    <td *ngIf="(this.loggedInUser)">
+      <a *ngIf="(this.loggedInUser && this.loggedInUser.role=='ADMIN') || this.isMyComment(comment)" mat-icon-button [routerLink]="['/comment', comment.id, 'edit']"><mat-icon>edit</mat-icon></a>
+      <a *ngIf="(this.loggedInUser && this.loggedInUser.role=='ADMIN') || this.isMyComment(comment)" mat-icon-button (click)="this.deleteComment(comment.id)" [routerLink]="['/recipe', comment.recipe.id]"><mat-icon>delete</mat-icon></a>
+    </td>
+  </tr>
+  </tbody>
+</table>

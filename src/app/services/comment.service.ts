@@ -177,9 +177,7 @@ export class CommentService {
   }
 
   deleteComment(id: number ) {
-    console.log(id);
     const delComment: Comment = this.comments.find(comment => comment.id === id);
-    console.log(delComment);
     const index = this.comments.indexOf(delComment);
     if (index > -1) {
         this.comments.splice(index, 1);

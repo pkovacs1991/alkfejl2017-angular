@@ -42,6 +42,7 @@ import {AdminGuard} from "./guards/AdminGuard";
 import { UserListComponent } from './user-list/user-list.component';
 import { CommentEditComponent } from './comment-edit/comment-edit.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
+import { CommentListComponent } from './comment-list/comment-list.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { CommentFormComponent } from './comment-form/comment-form.component';
     CategoryFormComponent,
     UserListComponent,
     CommentEditComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,
