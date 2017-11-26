@@ -14,8 +14,8 @@
           <th scope="col">Recept neve</th>
           <th scope="col">Feltöltő</th>
           <th scope="col">Kategória</th>
-          <th scope="col">Kedvelés</th>
-          <th scope="col">Szerkesztés</th>
+          <th *ngIf="(this.loggedInUser)" scope="col">Kedvelés</th>
+          <th  *ngIf="(this.loggedInUser)" scope="col">Szerkesztés</th>
         </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@
               {{ recipe.owner.username }}
           </td>
           <td>{{ recipe.category.name }}</td>
-          <td>
+          <td *ngIf="(this.loggedInUser)">
             <a mat-icon-button *ngIf="isFavourite(recipe.id) ;  else elseBlock"
                (click)="this.removeFavouriteRecipe(recipe.id)">
               <mat-icon>favorite</mat-icon>
@@ -43,12 +43,12 @@
             </ng-template>
           </td>
 
-          <td>
-            <a mat-icon-button *ngIf="this.loggedInUser.role=='ADMIN' || this.isMyRecipe(recipe)"
+          <td *ngIf="(this.loggedInUser)">
+            <a mat-icon-button *ngIf="(this.loggedInUser && this.loggedInUser.role=='ADMIN') || this.isMyRecipe(recipe)"
               [routerLink]="['/recipe', recipe.id, 'edit']">
               <mat-icon>edit</mat-icon>
             </a>
-            <a  mat-icon-button *ngIf="this.loggedInUser.role=='ADMIN' || this.isMyRecipe(recipe)"
+            <a  mat-icon-button *ngIf="(this.loggedInUser && this.loggedInUser.role=='ADMIN') || this.isMyRecipe(recipe)"
                (click)="this.deleteRecipe(recipe.id)">
               <mat-icon >delete</mat-icon>
             </a>
@@ -56,7 +56,7 @@
         </tr>
       </tbody>
     </table>
-    <a mat-raised-button color="primary" routerLink="/recipe/new"><mat-icon>add</mat-icon> Új recept felvétele</a>
+    <a *ngIf="(this.loggedInUser)" mat-raised-button color="primary" routerLink="/recipe/new"><mat-icon>add</mat-icon> Új recept felvétele</a>
   </div>
 
 </div>

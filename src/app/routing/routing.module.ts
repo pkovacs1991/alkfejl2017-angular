@@ -55,7 +55,6 @@ const routes: Routes = [
   {
     path: 'recipe/:id',
     component: RecipeDetailComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'recipe/:id/edit',

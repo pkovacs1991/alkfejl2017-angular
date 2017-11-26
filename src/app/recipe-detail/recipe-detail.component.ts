@@ -45,7 +45,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   isMyComment(comment: Comment){
-    return this.loggedInUser.id === comment.user.id;
+    return this.loggedInUser && ( this.loggedInUser.id === comment.user.id);
   }
 
   deleteComment(id: number) {

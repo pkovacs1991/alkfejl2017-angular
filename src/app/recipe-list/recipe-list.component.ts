@@ -72,7 +72,7 @@ export class RecipeListComponent implements OnChanges  {
   }
 
   isMyRecipe(recipe: Recipe){
-    return this.loggedInUser.id === recipe.owner.id;
+    return this.loggedInUser && (this.loggedInUser.id === recipe.owner.id);
   }
 
 }
