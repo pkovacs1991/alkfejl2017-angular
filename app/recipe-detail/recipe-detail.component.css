@@ -1,0 +1,12 @@
+table {
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+.header {
+    background: #673ab7;
+    color: white;
+}

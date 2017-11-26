@@ -1,0 +1,62 @@
+<br>
+<h1 class="display-2">Receptek</h1>
+<hr>
+<br>
+<div class="row">
+  <div class="col">
+
+    <category-filter [category]="selectedCategory" (onChange)="onFilterChange($event)"></category-filter>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Recept neve</th>
+          <th scope="col">Feltöltő</th>
+          <th scope="col">Kategória</th>
+          <th scope="col">Kedvelés</th>
+          <th scope="col">Szerkesztés</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let recipe of filteredRecipes">
+          <th scope="row">{{ recipe.id }}</th>
+          <td>
+              <a [routerLink]="['/recipe', recipe.id]">
+                {{ recipe.recipeName }}
+              </a>
+          </td>
+          <td>
+              {{ recipe.owner.username }}
+          </td>
+          <td>{{ recipe.category.name }}</td>
+          <td>
+            <a mat-icon-button *ngIf="isFavourite(recipe.id) ;  else elseBlock"
+               (click)="this.removeFavouriteRecipe(recipe.id)">
+              <mat-icon>favorite</mat-icon>
+            </a>
+            <ng-template #elseBlock>
+            <a mat-icon-button
+               (click)="this.addFavouriteRecipe(recipe.id)">
+              <mat-icon>favorite_border</mat-icon>
+            </a>
+            </ng-template>
+          </td>
+
+          <td>
+            <a mat-icon-button *ngIf="this.loggedInUser.role=='ADMIN' || this.isMyRecipe(recipe)"
+              [routerLink]="['/recipe', recipe.id, 'edit']">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <a  mat-icon-button *ngIf="this.loggedInUser.role=='ADMIN' || this.isMyRecipe(recipe)"
+               (click)="this.deleteRecipe(recipe.id)">
+              <mat-icon >delete</mat-icon>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a mat-raised-button color="primary" routerLink="/recipe/new"><mat-icon>add</mat-icon> Új recept felvétele</a>
+  </div>
+
+</div>
