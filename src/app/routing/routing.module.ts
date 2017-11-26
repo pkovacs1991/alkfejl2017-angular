@@ -20,6 +20,8 @@ import { CategoryEditComponent } from "../category-edit/category-edit.component"
 import {AdminGuard} from "../guards/AdminGuard";
 import { UserListComponent } from "../user-list/user-list.component";
 
+import { CommentEditComponent } from "../comment-edit/comment-edit.component";
+
 
 const routes: Routes = [
   {
@@ -92,6 +94,16 @@ const routes: Routes = [
     path: 'user/all',
     component: UserListComponent,
     canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'comment/new/:recipeid',
+    component: CommentEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'comment/:id/edit',
+    component: CommentEditComponent,
+    canActivate: [AuthGuard]
   },
 
 

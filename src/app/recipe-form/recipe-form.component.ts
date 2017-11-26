@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges,
   EventEmitter } from '@angular/core';
 import { Recipe } from "../models/recipe";
+import { Category } from "../models/category";
 
 @Component({
   selector: 'recipe-form',
@@ -10,10 +11,11 @@ import { Recipe } from "../models/recipe";
 export class RecipeFormComponent implements OnChanges {
 
   @Input() recipe: Recipe;
+  @Input() categories: Category[];
   model: Recipe = null;
   @Output() onSubmit = new EventEmitter<Recipe>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnChanges() {
     this.model = Object.assign({}, this.recipe);

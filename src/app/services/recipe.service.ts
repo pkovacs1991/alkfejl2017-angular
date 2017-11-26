@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe';
+import { User } from "../models/user";
 //import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // const httpOptions = {
@@ -311,9 +312,11 @@ export class RecipeService {
         return this.favourites;
   }
 
-    getMyRecipes(): Recipe[] {
-        return this.myRecipes;
-    }
+  getMyRecipes(): Recipe[] {
+     //return this.myRecipes;
+    const loggedInUser: User = JSON.parse(localStorage.getItem('user'));
+    return this.recipes.filter(recipe => recipe.owner.id === loggedInUser.id);
+  }
 
 
   getRecipe(id) {
@@ -321,22 +324,19 @@ export class RecipeService {
   }
 
   addRecipe(recipe: Recipe) {
-    console.log(recipe);
     const rec = Object.assign(recipe, {
       id: this.recipes.length+1,
-      user: 'Anonymus',
-      category: 'PASTA'
+      owner: JSON.parse(localStorage.getItem('user'))
     });
     this.recipes.push(rec);
   }
 
   updateRecipe(id: number, recipe: Recipe) {
-    console.log(recipe);
     const rec: Recipe = this.getRecipe(id);
     rec.recipeName = recipe.recipeName;
     rec.ingredients = recipe.ingredients;
     rec.description = recipe.description;
-    console.log('rec after', rec);
+    rec.category.name = recipe.category.name;
   }
 
   deleteRecipe(id: number ) {

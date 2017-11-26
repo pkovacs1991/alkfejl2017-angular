@@ -1,5 +1,6 @@
 import {AfterViewChecked, Component, Input, OnChanges, OnInit} from '@angular/core';
 import { Recipe } from "../models/recipe";
+import { User } from "../models/user";
 import { RecipeService } from "../services/recipe.service";
 
 @Component({
@@ -14,9 +15,11 @@ export class RecipeListComponent implements OnChanges  {
   @Input() recipes: Recipe[];
   filteredRecipes: Recipe[];
 
+  loggedInUser: User;
+
   constructor(
-    private recipeService: RecipeService
-  ) { }
+    private recipeService: RecipeService,
+  ) { this.loggedInUser = JSON.parse(localStorage.getItem('user'))}
 
 
     ngOnChanges() {
@@ -66,6 +69,10 @@ export class RecipeListComponent implements OnChanges  {
     }
 
     return ret;
+  }
+
+  isMyRecipe(recipe: Recipe){
+    return this.loggedInUser.id === recipe.owner.id;
   }
 
 }

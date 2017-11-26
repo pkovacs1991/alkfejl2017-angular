@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Observable } from "rxjs";
 import { Recipe } from "../models/recipe";
+import { Comment } from "../models/comment";
+import { User } from "../models/user";
 import { RecipeService } from "../services/recipe.service";
+import { CommentService } from "../services/comment.service";
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -13,15 +16,20 @@ import 'rxjs/add/operator/switchMap';
 export class RecipeDetailComponent implements OnInit {
 
   recipe: Recipe = new Recipe();
+  comments: Comment[];
+  loggedInUser: User;
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private commentService: CommentService
   ) { }
 
   ngOnInit() {
     // const id = +this.route.snapshot.paramMap.get('id');
     // this.user = this.recipeService.getUser(id);
+
+    this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 
     this.route.paramMap
       .switchMap((params: ParamMap) => {
@@ -30,6 +38,20 @@ export class RecipeDetailComponent implements OnInit {
         return Observable.of({});
       })
       .subscribe();
+
+      console.log(this.recipe.id);
+      this.comments = this.commentService.getCommentsByRecipe(this.recipe.id);
+      console.log(this.comments);
+  }
+
+  isMyComment(comment: Comment){
+    return this.loggedInUser.id === comment.user.id;
+  }
+
+  deleteComment(id: number) {
+    //console.log(id);
+    this.commentService.deleteComment(id);
+
   }
 
 }

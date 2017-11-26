@@ -34,5 +34,15 @@
     </mat-form-field>
   </div>
 
+  <div class="form-group">
+    <mat-form-field>
+      <mat-select name="category" placeholder="Kategória" [(ngModel)]="model.category" required>
+        <mat-option  *ngFor="let category of categories" [value]="category">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
   <button [disabled]="!recipeForm.valid" type="submit" mat-raised-button color="primary">Recept mentése</button>
 </form>
