@@ -1,14 +1,14 @@
 import { AppPage } from './app.po';
 
-describe('issue-tracker App', () => {
+describe('Recept TO-DO App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display the title of app', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('Recept TO-DO');
   });
 });
