@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import {User} from '../models/user';
 import {Recipe} from '../models/recipe';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+    headers: new HttpHeaders(
+    {'Content-Type': 'application/json'})
+}
 
 @Injectable()
 export class UserService {
@@ -36,12 +42,18 @@ export class UserService {
       }
   ];
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
 
 
-    getUsers(): User[] {
-        return this.users;
+    //getUsers(): User[] {
+    //    return this.users;
+    //}
+
+    getUsers(): Promise<User[]> {
+        return this.http.get<User[]>('api/user/all').toPromise();
     }
 
 

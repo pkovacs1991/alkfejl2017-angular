@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe';
 import { User } from "../models/user";
-//import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-// const httpOptions = {
-//   headers: new HttpHeaders(
-//     {'Content-Type': 'application/json'})
-// }
+const httpOptions = {
+    headers: new HttpHeaders(
+    {'Content-Type': 'application/json'})
+}
 
 @Injectable()
 export class RecipeService {
@@ -296,27 +296,31 @@ export class RecipeService {
     ];
 
   constructor(
-   // private http: HttpClient
+    private http: HttpClient
   ) { }
 
-  // getRecipes(): Promise<Recipe[]> {
-  //   return this.http.get<Recipe[]>('api/user').toPromise();
-  // }
-
-
-  getRecipes(): Recipe[] {
-        return this.recipes;
+  getRecipes(): Promise<Recipe[]> {
+    return this.http.get<Recipe[]>('api/recipes').toPromise();
   }
+
+
+  //getRecipes(): Recipe[] {
+  //      return this.recipes;
+  //}
 
   getFavourites(): Recipe[] {
         return this.favourites;
   }
 
-  getMyRecipes(): Recipe[] {
+  //getMyRecipes(): Recipe[] {
      //return this.myRecipes;
-    const loggedInUser: User = JSON.parse(localStorage.getItem('user'));
-    return this.recipes.filter(recipe => recipe.owner.id === loggedInUser.id);
-  }
+  //  const loggedInUser: User = JSON.parse(localStorage.getItem('user'));
+  //  return this.recipes.filter(recipe => recipe.owner.id === loggedInUser.id);
+  //}
+
+  getMyRecipes(): Promise<Recipe[]> {
+   return this.http.get<Recipe[]>('api/recipes/my').toPromise();
+ }
 
 
   getRecipe(id) {

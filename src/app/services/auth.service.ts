@@ -24,6 +24,7 @@ export class AuthService {
     for ( let i = 0; i < users.length; i++) {
       if (user.username === users[i].username && user.password === users[i].password) {
           console.log('user matched');
+          await this.http.post('api/user/login', {"username":user.username, "password":user.password}).toPromise();
           this.loggedInUser.emit(users[i]);
           localStorage.setItem('user', JSON.stringify(users[i]));
           break;
@@ -37,6 +38,7 @@ export class AuthService {
 
   logout() {
       this.loggedInUser.emit(null);
+      this.http.get('api/user/logout');
       localStorage.removeItem('user');
   }
 
