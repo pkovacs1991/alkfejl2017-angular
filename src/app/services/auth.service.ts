@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from '../models/user';
-import {UserService} from "./user.service";
+import {Observable} from 'rxjs/Observable';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -14,32 +14,16 @@ export class AuthService {
   @Output() loggedInUser: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private http: HttpClient,
-    private userService: UserService
+    private http: HttpClient
+
   ) { }
 
-  async login(user: User) {
-    const users = await this.userService.getUsers();
-    console.log(users);
-    for ( let i = 0; i < users.length; i++) {
-      if (user.username === users[i].username && user.password === users[i].password) {
-          console.log('user matched');
-          await this.http.post('api/user/login', {"username":user.username, "password":user.password}).toPromise();
-          this.loggedInUser.emit(users[i]);
-          localStorage.setItem('user', JSON.stringify(users[i]));
-          break;
-      }
-
-    }
-
-
-
+  login(user: User): Observable<User> {
+      return this.http.post<User>('api/user/login', {'username': user.username, 'password': user.password});
   }
 
-  logout() {
-      this.loggedInUser.emit(null);
-      this.http.get('api/user/logout');
-      localStorage.removeItem('user');
+  logout(): Observable<any> {
+      return this.http.get('api/user/logout');
   }
 
 }

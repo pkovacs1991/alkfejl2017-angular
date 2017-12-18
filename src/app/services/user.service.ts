@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from '../models/user';
 import {Recipe} from '../models/recipe';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from "rxjs/Observable";
 
 const httpOptions = {
     headers: new HttpHeaders(
@@ -11,93 +12,35 @@ const httpOptions = {
 @Injectable()
 export class UserService {
 
-  users = [
-      {
-          id: 1,
-          username: 'alma',
-          email: 'a@a.com',
-          password: 'aaa',
-          role: 'ADMIN'
-      },
-      {
-          id: 2,
-          username: 'barack',
-          email: 'b@b.com',
-          password: 'bbb',
-          role: 'USER'
-      },
-      {
-          id: 3,
-          username: 'cseresznye',
-          email: 'c@c.com',
-          password: 'ccc',
-          role: 'USER'
-      },
-      {
-          id: 4,
-          username: 'dio',
-          email: 'd@d.com',
-          password: 'ddd',
-          role: 'USER'
-      }
-  ];
-
   constructor(
     private http: HttpClient
   ) { }
 
-
-
-    //getUsers(): User[] {
-    //    return this.users;
-    //}
-
-    getUsers(): Promise<User[]> {
-        return this.http.get<User[]>('api/user/all').toPromise();
+    getUsers(): Observable<User[]> {
+        return this.http.get<User[]>('api/user');
     }
 
 
-    getUser(id): User {
-        return this.users.find(user => user.id === id);
+    getUser(id): Observable<User>  {
+        return this.http.get<User>(`api/user/${id}`);
     }
 
-    getFavouriteRecipes(): Recipe[] {
-        const loggedInuser: User = this.users.find(user => user.id === 1);
-        return loggedInuser.favoriteRecipes;
+    getFavouriteRecipes(): Observable<Recipe[]>   {
+        return this.http.get<Recipe[]>(`api/recipes/favourites`);
+
     }
 
-    getMyRecipes(): Recipe[] {
-        const loggedInuser: User = this.users.find(user => user.id === 1);
-        return loggedInuser.recipes;
+    getMyRecipes(): Observable<Recipe[]> {
+        return this.http.get<Recipe[]>(`api/recipes/my`);
+
     }
 
-    addUser(user: User): void {
-        console.log(user);
-        const usr: User = Object.assign(user, {
-            id: this.users.length + 1,
-            role: 'USER'
-        });
-        this.users.push(usr);
+    addUser(user: User): Observable<User> {
+        return this.http.post<User>(`api/user/register`, user);
     }
 
-    updateUser(id: number, user: User): void {
-        console.log(user);
-        const rec: User = this.getUser(id);
-        rec.username = user.username;
-        rec.email = user.email;
-        rec.password = user.password;
-        rec.role = user.role;
-    }
-
-    deleteUser(id: number ) {
-        console.log(id);
-        const delUser: User = this.users.find(user => user.id === id);
-  
-        const index = this.users.indexOf(delUser);
-        if (index > -1) {
-            this.users.splice(index, 1);
-        }
-  
+    deleteUser(id: number ): Observable<any> {
+        return this.http.delete<any>(`api/user/${id}`);
     }
 
 }

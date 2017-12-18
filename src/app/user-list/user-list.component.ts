@@ -15,13 +15,16 @@ export class UserListComponent implements OnInit {
       private userService: UserService
     ) { }
   
-    async ngOnInit() {
-      this.users = await this.userService.getUsers();
+    ngOnInit() {
+      this.userService.getUsers().subscribe( users => this.users = users);
     }
   
     deleteUser(id: number) {
       console.log(id);
-      this.userService.deleteUser(id);
+      this.userService.deleteUser(id).subscribe(next => {
+          this.userService.getUsers().subscribe( users => this.users = users);
+      });
+
     }
 
 }

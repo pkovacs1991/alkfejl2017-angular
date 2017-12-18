@@ -29,9 +29,10 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-
-    localStorage.removeItem('user');
+    this.authService.logout().subscribe((succes) => {
+      localStorage.removeItem('user');
+      this.authService.loggedInUser.emit(null);
     this.router.navigate(['dashboard']);
+    });
   }
 }

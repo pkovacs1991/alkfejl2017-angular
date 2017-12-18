@@ -26,12 +26,7 @@ export class UserEditComponent implements OnInit {
 
     onFormSubmit(user: User) {
         console.log(user);
-        if (user.id > 0) {
-            this.userService.updateUser(user.id, user);
-        } else {
-            this.userService.addUser(user);
-        }
-        console.log(this.userService.users);
+        this.userService.addUser(user).subscribe();
         this.router.navigate(['login']);
     }
 

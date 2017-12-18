@@ -28,7 +28,11 @@ export class LoginComponent implements OnInit {
     if (!form.valid) {
         return;
     }
-    this.authService.login(this.model);
+    this.authService.login(this.model).subscribe((userRes) => {
+        this.authService.loggedInUser.emit(userRes);
+        localStorage.setItem('user', JSON.stringify(userRes));
+
+    });
     this.router.navigate(['dashboard']);
 
   }

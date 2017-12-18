@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe';
 import { User } from "../models/user";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from "rxjs/Observable";
 
 const httpOptions = {
     headers: new HttpHeaders(
@@ -318,8 +319,8 @@ export class RecipeService {
   //  return this.recipes.filter(recipe => recipe.owner.id === loggedInUser.id);
   //}
 
-  getMyRecipes(): Promise<Recipe[]> {
-   return this.http.get<Recipe[]>('api/recipes/my').toPromise();
+  getMyRecipes(): Observable<Recipe[]> {
+   return this.http.get<Recipe[]>('api/recipes/my');
  }
 
 
