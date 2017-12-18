@@ -39,9 +39,11 @@ export class CommentEditComponent implements OnInit {
     this.route.paramMap
     .switchMap((params: ParamMap) => {
       const id = params.get('recipeid');
-      this.recipe = id !== null
-        ? this.recipeService.getRecipe(+id)
-        : new Recipe();
+        if (id !== null) {
+            this.recipeService.getRecipe(+id).subscribe(recipe => this.recipe = recipe);
+        } else {
+            this.recipe = new Recipe();
+        }
       return Observable.of({});
     })
     .subscribe();

@@ -325,7 +325,7 @@ export class RecipeService {
 
 
   getRecipe(id) {
-    return this.recipes.find(recipe => recipe.id === id);
+      return this.http.get<Recipe>(`api/recipes/${id}`);
   }
 
   addRecipe(recipe: Recipe) {
@@ -337,11 +337,13 @@ export class RecipeService {
   }
 
   updateRecipe(id: number, recipe: Recipe) {
-    const rec: Recipe = this.getRecipe(id);
-    rec.recipeName = recipe.recipeName;
-    rec.ingredients = recipe.ingredients;
-    rec.description = recipe.description;
-    rec.category.name = recipe.category.name;
+    this.getRecipe(id).subscribe(rec => {
+        rec.recipeName = recipe.recipeName;
+        rec.ingredients = recipe.ingredients;
+        rec.description = recipe.description;
+        rec.category.name = recipe.category.name;
+    });
+
   }
 
   deleteRecipe(id: number ) {

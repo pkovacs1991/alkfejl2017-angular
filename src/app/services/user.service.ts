@@ -20,21 +20,6 @@ export class UserService {
         return this.http.get<User[]>('api/user');
     }
 
-
-    getUser(id): Observable<User>  {
-        return this.http.get<User>(`api/user/${id}`);
-    }
-
-    getFavouriteRecipes(): Observable<Recipe[]>   {
-        return this.http.get<Recipe[]>(`api/recipes/favourites`);
-
-    }
-
-    getMyRecipes(): Observable<Recipe[]> {
-        return this.http.get<Recipe[]>(`api/recipes/my`);
-
-    }
-
     addUser(user: User): Observable<User> {
         return this.http.post<User>(`api/user/register`, user);
     }

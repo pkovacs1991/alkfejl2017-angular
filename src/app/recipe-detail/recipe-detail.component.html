@@ -1,24 +1,24 @@
 <br>
-<h1 class="display-2">{{ recipe.recipeName }}</h1>
+<h1 class="display-2">{{ recipe?.recipeName }}</h1>
 <hr>
 <br>
 
 <dl class="row">
   <dt class="col-sm-3">Feltöltő</dt>
-  <dd class="col-sm-9">{{ recipe.owner.username }}</dd>
+  <dd class="col-sm-9">{{ recipe?.owner?.username }}</dd>
 
   <dt class="col-sm-3">Hozzávalók</dt>
-  <dd class="col-sm-9">{{ recipe.ingredients }}</dd>
+  <dd class="col-sm-9">{{ recipe?.ingredients }}</dd>
 
   <dt class="col-sm-3">Elkészítés</dt>
-  <dd class="col-sm-9">{{ recipe.description }}</dd>
+  <dd class="col-sm-9">{{ recipe?.description }}</dd>
 
   <dt class="col-sm-3">Kategória</dt>
-  <dd class="col-sm-9">{{ recipe.category.name }}</dd>
+  <dd class="col-sm-9">{{ recipe?.category?.name }}</dd>
 
 </dl>
 
-<comment-list [recipeId]="recipe.id" [comments]="this.comments"></comment-list>
+<comment-list [recipeId]="recipe?.id" [comments]="this.comments"></comment-list>
 
 <button mat-raised-button routerLink="/recipe/all"><mat-icon>reply</mat-icon>Vissza</button>
-<button *ngIf="(this.loggedInUser)" mat-raised-button [routerLink]="['/comment/new', recipe.id]" ><mat-icon>comment</mat-icon>Új hozzászólás</button>
+<button *ngIf="(this.loggedInUser)" mat-raised-button [routerLink]="['/comment/new', recipe?.id]" ><mat-icon>comment</mat-icon>Új hozzászólás</button>

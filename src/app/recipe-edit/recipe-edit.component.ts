@@ -30,9 +30,11 @@ export class RecipeEditComponent implements OnInit {
     this.route.paramMap
     .switchMap((params: ParamMap) => {
       const id = params.get('id');
-      this.recipe = id !== null
-        ? this.recipeService.getRecipe(+id)
-        : new Recipe();
+          if (id !== null) {
+            this.recipeService.getRecipe(+id).subscribe(recipe => this.recipe = recipe);
+          } else {
+              this.recipe = new Recipe();
+          }
         console.log(this.recipe);
       return Observable.of({});
     })
