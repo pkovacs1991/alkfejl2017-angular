@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from "../models/category";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import { Location } from "@angular/common";
 import { Observable } from "rxjs";
 import { CategoryService } from "../services/category.service";
@@ -18,17 +18,20 @@ export class CategoryEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.route.paramMap
     .switchMap((params: ParamMap) => {
       const id = params.get('id');
-      this.category = id !== null
-        ? this.categoryService.getCategory(+id)
-        : new Category();
-        console.log(this.category);
+      if (id) {
+          this.categoryService.getCategory(+id).subscribe(category => this.category = category);
+      } else {
+          this.category = new Category();
+
+      }
+
       return Observable.of({});
     })
     .subscribe();
@@ -37,13 +40,11 @@ export class CategoryEditComponent implements OnInit {
   onFormSubmit(category: Category) {
     console.log(category);
     if (category.id > 0) {
-      console.log('form', category);
-      this.categoryService.updateCategory(category.id, category);
-      console.log('update');
+
+      this.categoryService.updateCategory(category.id, category).subscribe(next => this.router.navigate(['category/all']));
     } else {
-      this.categoryService.addCategory(category);
+      this.categoryService.addCategory(category).subscribe(next => this.router.navigate(['category/all']));
     }
-    this.location.back();
   }
 
 }

@@ -300,75 +300,42 @@ export class RecipeService {
     private http: HttpClient
   ) { }
 
-  getRecipes(): Promise<Recipe[]> {
-    return this.http.get<Recipe[]>('api/recipes').toPromise();
+  getRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>('api/recipes');
   }
 
 
-  //getRecipes(): Recipe[] {
-  //      return this.recipes;
-  //}
-
-  getFavourites(): Recipe[] {
-        return this.favourites;
+  getFavourites(): Observable<Recipe[]> {
+      return this.http.get<Recipe[]>('api/recipes/favourites');
   }
-
-  //getMyRecipes(): Recipe[] {
-     //return this.myRecipes;
-  //  const loggedInUser: User = JSON.parse(localStorage.getItem('user'));
-  //  return this.recipes.filter(recipe => recipe.owner.id === loggedInUser.id);
-  //}
 
   getMyRecipes(): Observable<Recipe[]> {
    return this.http.get<Recipe[]>('api/recipes/my');
  }
 
 
-  getRecipe(id) {
+  getRecipe(id): Observable<Recipe> {
       return this.http.get<Recipe>(`api/recipes/${id}`);
   }
 
-  addRecipe(recipe: Recipe) {
-    const rec = Object.assign(recipe, {
-      id: this.recipes.length+1,
-      owner: JSON.parse(localStorage.getItem('user'))
-    });
-    this.recipes.push(rec);
+  addRecipe(recipe: Recipe): Observable<Recipe> {
+      return this.http.post<Recipe>(`api/recipes`, recipe);
   }
 
-  updateRecipe(id: number, recipe: Recipe) {
-    this.getRecipe(id).subscribe(rec => {
-        rec.recipeName = recipe.recipeName;
-        rec.ingredients = recipe.ingredients;
-        rec.description = recipe.description;
-        rec.category.name = recipe.category.name;
-    });
-
+  updateRecipe(id: number, recipe: Recipe): Observable<Recipe> {
+      return this.http.put<Recipe>(`api/recipes/${id}`, recipe);
   }
 
-  deleteRecipe(id: number ) {
-      console.log(id);
-      const delRecipe: Recipe = this.recipes.find(recipe => recipe.id === id);
-
-      const index = this.recipes.indexOf(delRecipe);
-      if (index > -1) {
-          this.recipes.splice(index, 1);
-      }
-
+  deleteRecipe(id: number ): Observable<any> {
+      return this.http.delete<any>(`api/recipes/${id}`);
   }
 
-  addToFavourite(id: number ) {
-      const fav = this.recipes.find(recipe => recipe.id === id);
-      this.favourites.push(fav);
+  addToFavourite(id: number ): Observable<any> {
+      return this.http.post<any>(`api/recipes/favourites/${id}`, {});
   }
 
-    removeFromFavourite(id: number ) {
-        console.log(id);
-        const delRecipe: Recipe = this.favourites.find(recipe => recipe.id === id);
+    removeFromFavourite(id: number ): Observable<any> {
+        return this.http.delete<any>(`api/recipes/favourites/${id}`, {});
 
-        const index = this.favourites.indexOf(delRecipe);
-        if (index > -1) {
-            this.favourites.splice(index, 1);
-        }
   }
 }

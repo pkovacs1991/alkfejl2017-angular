@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Comment } from "../models/comment";
 import { Recipe } from "../models/recipe";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import { Location } from "@angular/common";
 import { Observable } from "rxjs";
 import { CommentService } from "../services/comment.service";
@@ -22,7 +22,7 @@ export class CommentEditComponent implements OnInit {
     private route: ActivatedRoute,
     private commentService: CommentService,
     private recipeService: RecipeService,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class CommentEditComponent implements OnInit {
       comment.recipe = this.recipe;
       this.commentService.addComment(comment).subscribe(next => console.log('success'));
     }
-    this.location.back();
+      this.router.navigate(['recipe', this.recipe.id]);
   }
 
 }

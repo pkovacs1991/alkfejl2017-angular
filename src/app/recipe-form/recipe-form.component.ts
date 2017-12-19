@@ -19,8 +19,13 @@ export class RecipeFormComponent implements OnChanges {
 
   ngOnChanges() {
     this.model = Object.assign({}, this.recipe);
+    console.log(this.model);
+    console.log(this.categories);
   }
 
+  compareFn(c1: Category, c2: Category): boolean {
+      return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
   submit(form) {
     if (!form.valid) {
       return;

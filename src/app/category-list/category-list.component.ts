@@ -15,13 +15,15 @@ export class CategoryListComponent implements OnInit {
     private categoryService: CategoryService
   ) { }
 
-  async ngOnInit() {
-    this.categories = await this.categoryService.getCategories();
+  ngOnInit() {
+    this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
 
   deleteCategory(id: number) {
     console.log(id);
-    this.categoryService.deleteCategory(id);
+    this.categoryService.deleteCategory(id).subscribe(next => {
+        this.categoryService.getCategories().subscribe(categories => this.categories = categories);
+    });
   }
 
 }

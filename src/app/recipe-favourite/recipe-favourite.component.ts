@@ -13,7 +13,11 @@ export class RecipeFavouriteComponent implements OnInit {
 
     constructor(private recipeService: RecipeService) { }
 
-    async ngOnInit() {
-        this.recipes = await this.recipeService.getFavourites();
+    ngOnInit() {
+        this.recipeService.getFavourites().subscribe(recipes => this.recipes = recipes);
+    }
+
+    deleteRecipe(id: number) {
+        this.recipeService.deleteRecipe(id).subscribe(next => this.recipeService.getFavourites().subscribe(recipes => this.recipes = recipes));
     }
 }

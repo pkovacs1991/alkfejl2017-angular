@@ -10,14 +10,14 @@ import {Category} from "../models/category";
 export class CategoryFilterComponent implements OnInit {
 
   categories: Category[];
-  //@Input('status') selectedStatus: string = '';
+
   @Input('category') selectedCategory: string;
   @Output() onChange = new EventEmitter<string>();
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
-    this.categories = this.categoryService.getCategories();
+    this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
 
   // onFilterChange(status: string) {

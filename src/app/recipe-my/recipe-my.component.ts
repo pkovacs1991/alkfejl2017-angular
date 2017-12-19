@@ -18,4 +18,8 @@ export class RecipeMyComponent implements OnInit {
   ngOnInit() {
       this.recipeService.getMyRecipes().subscribe(recipes => this.recipes = recipes);
   }
+
+    deleteRecipe(id: number) {
+        this.recipeService.deleteRecipe(id).subscribe(next => this.recipeService.getMyRecipes().subscribe(recipes => this.recipes = recipes));
+    }
 }

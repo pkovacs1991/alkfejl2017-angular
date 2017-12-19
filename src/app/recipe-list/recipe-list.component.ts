@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, Input, OnChanges, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { Recipe } from "../models/recipe";
 import { User } from "../models/user";
 import { RecipeService } from "../services/recipe.service";
@@ -11,19 +11,20 @@ import { RecipeService } from "../services/recipe.service";
 export class RecipeListComponent implements OnChanges  {
 
   selectedCategory: string = '';
-  favourites: Recipe[];
+  favourites: Recipe[] = [];
   @Input() recipes: Recipe[];
   filteredRecipes: Recipe[];
+  @Output() onDelete = new EventEmitter<number>();
 
   loggedInUser: User;
 
   constructor(
     private recipeService: RecipeService,
-  ) { this.loggedInUser = JSON.parse(localStorage.getItem('user'))}
+  ) { this.loggedInUser = JSON.parse(localStorage.getItem('user')); }
 
 
     ngOnChanges() {
-    this.favourites = this.recipeService.getFavourites();
+    this.recipeService.getFavourites().subscribe(favourites => this.favourites = favourites);
     this.filterRecipes();
   }
 
@@ -41,22 +42,21 @@ export class RecipeListComponent implements OnChanges  {
   }
 
   deleteRecipe(id: number) {
-    console.log(id);
-    this.recipeService.deleteRecipe(id);
-
+    this.onDelete.emit(id);
   }
 
   addFavouriteRecipe(id: number) {
 
-      this.recipeService.addToFavourite(id);
-      this.favourites = this.recipeService.getFavourites();
+      this.recipeService.addToFavourite(id).subscribe(
+          next => this.recipeService.getFavourites().subscribe(favourites => this.favourites = favourites));
+
 
   }
 
   removeFavouriteRecipe(id: number) {
 
-      this.recipeService.removeFromFavourite(id);
-      this.favourites = this.recipeService.getFavourites();
+      this.recipeService.removeFromFavourite(id).subscribe(
+          next => this.recipeService.getFavourites().subscribe(favourites => this.favourites = favourites));
 
   }
 

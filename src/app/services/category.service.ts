@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Category} from '../models/category';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class CategoryService {
@@ -19,41 +21,29 @@ export class CategoryService {
     ];
 
     constructor(
-        // private http: HttpClient
+        private http: HttpClient
+
     ) { }
 
-    getCategories(): Category[] {
-        return this.categories;
+    getCategories(): Observable<Category[]> {
+        return this.http.get<Category[]>(`api/category`);
     }
 
 
-    getCategory(id) {
-        return this.categories.find(category => category.id === id);
+    getCategory(id): Observable<Category> {
+        return this.http.get<Category>(`api/category/${id}`);
     }
 
-    addCategory(category: Category) {
-        console.log(category);
-        const rec = Object.assign(category, {
-            id: this.categories.length + 1,
-        });
-        this.categories.push(rec);
+    addCategory(category: Category): Observable<Category> {
+        return this.http.post<Category>(`api/category`, category);
     }
 
-    updateCategory(id: number, category: Category) {
-        console.log(category);
-        const rec: Category = this.getCategory(id);
-        rec.name = category.name;
+    updateCategory(id: number, category: Category): Observable<Category> {
+        return this.http.put<Category>(`api/category/${id}`, category);
     }
 
-    deleteCategory(id: number ) {
-        console.log(id);
-        const delCategory: Category = this.categories.find(category => category.id === id);
-  
-        const index = this.categories.indexOf(delCategory);
-        if (index > -1) {
-            this.categories.splice(index, 1);
-        }
-  
+    deleteCategory(id: number ): Observable<any> {
+        return this.http.delete<any>(`api/category/${id}`);
     }
 
 }

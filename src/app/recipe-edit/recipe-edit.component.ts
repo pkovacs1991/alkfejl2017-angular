@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import { Location } from "@angular/common";
 import { Observable } from "rxjs";
 import { Recipe } from "../models/recipe";
@@ -22,11 +22,11 @@ export class RecipeEditComponent implements OnInit {
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private categoryService: CategoryService,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.categories = this.categoryService.getCategories();
+    this.categoryService.getCategories().subscribe(categories => this.categories = categories);
     this.route.paramMap
     .switchMap((params: ParamMap) => {
       const id = params.get('id');
@@ -45,12 +45,12 @@ export class RecipeEditComponent implements OnInit {
     console.log(recipe);
     if (recipe.id > 0) {
       console.log('form', recipe);
-      this.recipeService.updateRecipe(recipe.id, recipe);
+      this.recipeService.updateRecipe(recipe.id, recipe).subscribe(next => this.router.navigate(['recipe/all']));
       console.log('update');
     } else {
-      this.recipeService.addRecipe(recipe);
+      this.recipeService.addRecipe(recipe).subscribe(next => this.router.navigate(['recipe/all']) );
     }
-    this.location.back();
+
   }
 
 }
