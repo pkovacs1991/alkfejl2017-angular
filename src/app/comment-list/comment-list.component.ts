@@ -28,9 +28,8 @@ export class CommentListComponent implements OnChanges {
     }
 
     deleteComment(id: number) {
-        this.commentService.deleteComment(id);
-        this.comments = this.commentService.getCommentsByRecipe(this.recipeId);
-
+        this.commentService.deleteComment(id).subscribe(next =>
+            this.commentService.getCommentsByRecipe(this.recipeId).subscribe(comments => this.comments = comments));
     }
 
 }

@@ -34,13 +34,15 @@ export class RecipeDetailComponent implements OnInit {
     this.route.paramMap
       .switchMap((params: ParamMap) => {
         const id = +params.get('id');
-        this.recipeService.getRecipe(id).subscribe(recipe => this.recipe = recipe);
+        this.recipeService.getRecipe(id).subscribe(recipe => {
+          this.recipe = recipe;
+          this.commentService.getCommentsByRecipe(this.recipe.id).subscribe(comments => this.comments = comments);
+        });
         return Observable.of({});
       })
       .subscribe();
 
       console.log(this.recipe.id);
-      this.comments = this.commentService.getCommentsByRecipe(this.recipe.id);
       console.log(this.comments);
   }
 

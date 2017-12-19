@@ -29,9 +29,13 @@ export class CommentEditComponent implements OnInit {
     this.route.paramMap
     .switchMap((params: ParamMap) => {
       const id = params.get('id');
-      this.comment = id !== null
-        ? this.commentService.getComment(+id)
-        : new Comment();
+      if (id) {
+          this.commentService.getComment(+id).subscribe(
+              comment => this.comment = comment
+          );
+      } else {
+          this.comment = new Comment();
+      }
       return Observable.of({});
     })
     .subscribe();
@@ -51,9 +55,11 @@ export class CommentEditComponent implements OnInit {
 
   onFormSubmit(comment: Comment) {
     if (comment.id > 0) {
-      this.commentService.updateComment(comment.id, comment);
+      this.commentService.updateComment(comment.id, comment).subscribe(next => console.log('success'));
+
     } else {
-      this.commentService.addComment(comment, this.recipe);
+      comment.recipe = this.recipe;
+      this.commentService.addComment(comment).subscribe(next => console.log('success'));
     }
     this.location.back();
   }
