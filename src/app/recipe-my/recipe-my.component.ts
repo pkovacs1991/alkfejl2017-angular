@@ -20,6 +20,7 @@ export class RecipeMyComponent implements OnInit {
   }
 
     deleteRecipe(id: number) {
-        this.recipeService.deleteRecipe(id).subscribe(next => this.recipeService.getMyRecipes().subscribe(recipes => this.recipes = recipes));
+        this.recipeService.deleteRecipe(id).subscribe(
+            next => this.recipeService.getMyRecipes().subscribe(recipes => this.recipes = recipes));
     }
 }

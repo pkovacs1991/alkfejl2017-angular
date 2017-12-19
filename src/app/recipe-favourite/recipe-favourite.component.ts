@@ -18,6 +18,7 @@ export class RecipeFavouriteComponent implements OnInit {
     }
 
     deleteRecipe(id: number) {
-        this.recipeService.deleteRecipe(id).subscribe(next => this.recipeService.getFavourites().subscribe(recipes => this.recipes = recipes));
+        this.recipeService.deleteRecipe(id).subscribe(
+            next => this.recipeService.getFavourites().subscribe(recipes => this.recipes = recipes));
     }
 }

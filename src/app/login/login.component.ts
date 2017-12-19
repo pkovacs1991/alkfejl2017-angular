@@ -31,9 +31,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model).subscribe((userRes) => {
         this.authService.loggedInUser.emit(userRes);
         localStorage.setItem('user', JSON.stringify(userRes));
+        this.router.navigate(['dashboard']);
 
-    });
-    this.router.navigate(['dashboard']);
+    },
+        err => this.router.navigate(['dashboard']));
 
   }
 

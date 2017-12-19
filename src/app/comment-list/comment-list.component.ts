@@ -23,7 +23,7 @@ export class CommentListComponent implements OnChanges {
       console.log(this.comments);
   }
 
-    isMyComment(comment: Comment){
+    isMyComment(comment: Comment) {
         return this.loggedInUser && ( this.loggedInUser.id === comment.user.id);
     }
 

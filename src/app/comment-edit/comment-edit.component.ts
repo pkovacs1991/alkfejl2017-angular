@@ -55,13 +55,13 @@ export class CommentEditComponent implements OnInit {
 
   onFormSubmit(comment: Comment) {
     if (comment.id > 0) {
-      this.commentService.updateComment(comment.id, comment).subscribe(next => console.log('success'));
+      this.commentService.updateComment(comment.id, comment).subscribe(next => this.router.navigate(['recipe', this.recipe.id]));
 
     } else {
       comment.recipe = this.recipe;
-      this.commentService.addComment(comment).subscribe(next => console.log('success'));
+      this.commentService.addComment(comment).subscribe(next => this.router.navigate(['recipe', this.recipe.id]));
     }
-      this.router.navigate(['recipe', this.recipe.id]);
+
   }
 
 }
