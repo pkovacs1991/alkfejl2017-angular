@@ -17,7 +17,7 @@ export class RecipeAllComponent implements OnInit {
       this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes);
   }
 
-    deleteRecipe(id: number) {
-      this.recipeService.deleteRecipe(id).subscribe(next => this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes));
+    refresh() {
+        this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes);
     }
 }

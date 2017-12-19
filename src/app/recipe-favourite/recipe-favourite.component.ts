@@ -17,8 +17,8 @@ export class RecipeFavouriteComponent implements OnInit {
         this.recipeService.getFavourites().subscribe(recipes => this.recipes = recipes);
     }
 
-    deleteRecipe(id: number) {
-        this.recipeService.deleteRecipe(id).subscribe(
-            next => this.recipeService.getFavourites().subscribe(recipes => this.recipes = recipes));
+
+    refresh() {
+        this.recipeService.getFavourites().subscribe(recipes => this.recipes = recipes);
     }
 }

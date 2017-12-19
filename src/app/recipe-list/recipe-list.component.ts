@@ -14,7 +14,7 @@ export class RecipeListComponent implements OnChanges  {
   favourites: Recipe[] = [];
   @Input() recipes: Recipe[];
   filteredRecipes: Recipe[];
-  @Output() onDelete = new EventEmitter<number>();
+  @Output() onRefresh = new EventEmitter<number>();
 
   loggedInUser: User;
 
@@ -42,7 +42,9 @@ export class RecipeListComponent implements OnChanges  {
   }
 
   deleteRecipe(id: number) {
-    this.onDelete.emit(id);
+      this.recipeService.deleteRecipe(id).subscribe(
+          next => this.onRefresh.emit(null));
+
   }
 
   addFavouriteRecipe(id: number) {
@@ -56,7 +58,10 @@ export class RecipeListComponent implements OnChanges  {
   removeFavouriteRecipe(id: number) {
 
       this.recipeService.removeFromFavourite(id).subscribe(
-          next => this.recipeService.getFavourites().subscribe(favourites => this.favourites = favourites));
+          next => {
+            this.recipeService.getFavourites().subscribe(favourites => this.favourites = favourites);
+            this.onRefresh.emit(null);
+          });
 
   }
 

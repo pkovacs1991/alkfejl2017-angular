@@ -19,8 +19,7 @@ export class RecipeMyComponent implements OnInit {
       this.recipeService.getMyRecipes().subscribe(recipes => this.recipes = recipes);
   }
 
-    deleteRecipe(id: number) {
-        this.recipeService.deleteRecipe(id).subscribe(
-            next => this.recipeService.getMyRecipes().subscribe(recipes => this.recipes = recipes));
+    refresh() {
+        this.recipeService.getMyRecipes().subscribe(recipes => this.recipes = recipes);
     }
 }
